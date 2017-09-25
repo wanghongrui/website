@@ -8,7 +8,7 @@ export default {
   getBooks (userId) {
     return $.ajax({
       async: false,
-      url: `${url}/book/user/${userId}/collections`,
+      url: `${url}/book/user/${userId}/collections?count=100`,
       dataType: 'jsonp'
     })
   },

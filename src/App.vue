@@ -1,12 +1,18 @@
 <template>
   <div id="app">
+    <vheader></vheader>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
+import vheader from './components/Header.vue'
+
 export default {
-  name: 'app'
+  name: 'app',
+  components: {
+    vheader
+  }
 }
 </script>
 
@@ -23,6 +29,7 @@ html, body{
   #app {
     width: 100%;
     height: 100%;
+    position: relative;
     background: $background-color;
   }
 }
