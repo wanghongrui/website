@@ -4,24 +4,24 @@
       <div class="gallery">
         <div class="book-group">
           <div class="book-group-title">正在读({{reading.length}}本)</div>
-          <div class="row">
-            <div class="col-md-2" v-for="b of reading">
+          <div class="row container-fluid">
+            <div class="col-sm-4 col-md-3 col-lg-2" v-for="b of reading">
               <book :book="b"></book>
             </div>
           </div>
         </div>
         <div class="book-group">
           <div class="book-group-title">已经读过({{read.length}}本)</div>
-          <div class="row">
-            <div class="col-md-2" v-for="b of read">
+          <div class="row container-fluid">
+            <div class="col-sm-4 col-md-3 col-lg-2" v-for="b of read">
               <book :book="b"></book>
             </div>
           </div>
         </div>
         <div class="book-group">
           <div class="book-group-title">打算读({{wish.length}}本)</div>
-          <div class="row">
-            <div class="col-md-2" v-for="b of wish">
+          <div class="row container-fluid">
+            <div class="col-sm-4 col-md-3 col-lg-2" v-for="b of wish">
               <book :book="b"></book>
             </div>
           </div>
