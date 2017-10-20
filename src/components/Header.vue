@@ -11,9 +11,9 @@
       color: #FFF;
       font-size: 18px;
       margin-left: 10px;
+      white-space:nowrap;
+      text-overflow:ellipsis;
+      overflow:hidden;
     }
-    width: 100%;
-    height: 60px;
-    background: #09c;
   }
 </style>
