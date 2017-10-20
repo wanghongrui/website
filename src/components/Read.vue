@@ -5,7 +5,7 @@
         <div class="book-group">
           <div class="book-group-title">正在读({{reading.length}}本)</div>
           <div class="row container-fluid">
-            <div class="col-sm-4 col-md-3 col-lg-2" v-for="b of reading">
+            <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-1" v-for="b of reading" :key="b.book_id">
               <book :book="b"></book>
             </div>
           </div>
@@ -13,7 +13,7 @@
         <div class="book-group">
           <div class="book-group-title">已经读过({{read.length}}本)</div>
           <div class="row container-fluid">
-            <div class="col-sm-4 col-md-3 col-lg-2" v-for="b of read">
+            <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-1" v-for="b of read" :key="b.book_id">
               <book :book="b"></book>
             </div>
           </div>
@@ -21,7 +21,7 @@
         <div class="book-group">
           <div class="book-group-title">打算读({{wish.length}}本)</div>
           <div class="row container-fluid">
-            <div class="col-sm-4 col-md-3 col-lg-2" v-for="b of wish">
+            <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-1" v-for="b of wish" :key="b.book_id">
               <book :book="b"></book>
             </div>
           </div>
@@ -73,8 +73,6 @@ export default {
     background-image: url('../assets/image/background.jpg');
 
     .content {
-      padding: 10px 60px 60px;
-
       .gallery {
         .book-group {
           padding: 6px;

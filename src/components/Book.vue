@@ -24,6 +24,7 @@ export default {
   padding: 12px 0;
   margin: 5px;
   text-align: center;
+  box-shadow: 2px 2px 2px 2px #C1C1C1;
 
   .book-img {
     display: inline-block;
