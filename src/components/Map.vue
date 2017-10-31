@@ -13,7 +13,7 @@ import '../assets/script/TdtLayer'
 import 'leaflet/dist/leaflet.css'
 // import $ from 'jquery'
 
-let map
+let map, poiGroup
 
 export default {
   name: 'Map',
@@ -35,6 +35,9 @@ export default {
         this.loadData()
       }
     })
+
+    poiGroup = L.featureGroup()
+    poiGroup.addTo(map)
   },
   methods: {
     loadData () {
@@ -46,7 +49,10 @@ export default {
       }).then(d => {
         let comms = d.val.comms
         for (let c of comms) {
-          this.records.set(c.id, c)
+          if (!this.records.get(c.id)) {
+            this.records.set(c.id, c)
+            this.addMarker(c)
+          }
         }
       })
     },
@@ -59,6 +65,10 @@ export default {
     },
     getSize () {
       alert(this.records.size)
+    },
+    addMarker (item) {
+      let marker = L.circleMarker([item.lat, item.lng])
+      poiGroup.addLayer(marker)
     }
   }
 }
