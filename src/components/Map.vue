@@ -1,6 +1,7 @@
 <template>
   <div class="map" id="map">
     <div class="record-panel">
+      <button>当前地图级别{{zoom}}</button>
       <button title="查看已经搜集到记录" @click="getSize">查看记录数</button>
       <button title="打开控制台后再点击" @click="output">输出</button>
     </div>
@@ -19,7 +20,8 @@ export default {
   name: 'Map',
   data () {
     return {
-      records: new Map()
+      records: new Map(),
+      zoom: 17
     }
   },
   mounted () {
@@ -31,6 +33,7 @@ export default {
     new L.TdtLayer({type: 'emap', labelVisible: true}).addTo(map)
 
     map.on('moveend zoomend', () => {
+      this.zoom = map.getZoom()
       if (map.getZoom() === 17) {
         this.loadData()
       }
