@@ -32,6 +32,11 @@ module.exports = {
         target: 'https://shanghai.anjuke.com',
         logLevel: 'debug',
         changeOrigin: true
+      },
+      '/api/v4': {
+        target: 'http://soa.dooioo.com',
+        logLevel: 'debug',
+        changeOrigin: true
       }
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"
