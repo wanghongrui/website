@@ -4,7 +4,7 @@
       <img :src="book.book.image">
     </div>
     <div class="book-title">
-      <a :href="book.book.alt" target="_blank" :title="book.book.summary">{{book.book.title}}</a>
+      <a class="book-href" :href="book.book.alt" target="_blank" :title="book.book.summary">{{book.book.title}}</a>
     </div>
   </div>
 </template>
@@ -36,12 +36,15 @@ export default {
     }
   }
   .book-title {
-    width: 90%;
     white-space:nowrap;
     text-overflow:ellipsis;
     overflow:hidden;
     font-size: 12px;
     margin-top: 6px;
+    .book-href{
+      color: #409eff;
+      text-decoration: none;
+    }
   }
 }
 </style>

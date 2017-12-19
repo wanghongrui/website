@@ -29,12 +29,12 @@ export default {
     map = L.map('map', {
       maxZoom: 20,
       crs: L.CRS.EPSG4326
-    }).setView([31.269887, 121.539449], 17)
+    }).setView([31.269887, 121.539449], 15)
     new L.TdtLayer({type: 'emap', labelVisible: true}).addTo(map)
 
     map.on('moveend zoomend', () => {
       this.zoom = map.getZoom()
-      if (map.getZoom() === 17) {
+      if (map.getZoom() === 15) {
         this.loadData()
       }
     })
@@ -45,15 +45,15 @@ export default {
   methods: {
     loadData () {
       let bound = map.getBounds()
-      let url = '/v3/ajax/map/sale/facet/?zoom=' + map.getZoom() + '&lat=' + bound.getSouth() + '_' + bound.getNorth() + '&lng=' + bound.getWest() + '_' + bound.getEast() + '&t=' + Date.now()
+      let url = '/api/v4/online/house/ershoufang/listMapResult?access_token=7poanTTBCymmgE0FOn1oKp&client=pc&cityCode=sh&type=plate&minLatitude=' + bound.getSouth() + '&maxLatitude=' + bound.getNorth() + '&minLongitude=' + bound.getWest() + '&maxLongitude=' + bound.getEast() + '&siteType=quyu'
 
       fetch(url).then(resp => {
         return resp.json()
       }).then(d => {
-        let comms = d.val.comms
+        let comms = d.dataList
         for (let c of comms) {
-          if (!this.records.get(c.id)) {
-            this.records.set(c.id, c)
+          if (!this.records.get(c.dataId)) {
+            this.records.set(c.dataId, c)
             this.addMarker(c)
           }
         }
@@ -62,7 +62,7 @@ export default {
     output () {
       let str = ''
       for (let r of this.records.values()) {
-        str += r.id + '\t' + r.lat + '\t' + r.lng + '\t' + r.mid_price + '\n'
+        str += r.dataId + '\t' + r.latitude + '\t' + r.longitude + '\t' + r.dealAvgPrice + '\t' + r.saleAvgPrice + '\n'
       }
       console.log(str)
     },
@@ -70,7 +70,7 @@ export default {
       alert(this.records.size)
     },
     addMarker (item) {
-      let marker = L.circleMarker([item.lat, item.lng])
+      let marker = L.circleMarker([item.latitude, item.longitude])
       poiGroup.addLayer(marker)
     }
   }

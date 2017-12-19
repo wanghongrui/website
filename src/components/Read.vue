@@ -4,24 +4,24 @@
       <div class="gallery">
         <div class="book-group">
           <div class="book-group-title">正在读({{reading.length}}本)</div>
-          <div class="row container-fluid">
-            <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-1" v-for="b of reading" :key="b.book_id">
+          <div class="book-group-content">
+            <div class="book-container" v-for="b of reading" :key="b.book_id">
               <book :book="b"></book>
             </div>
           </div>
         </div>
         <div class="book-group">
           <div class="book-group-title">已经读过({{read.length}}本)</div>
-          <div class="row container-fluid">
-            <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-1" v-for="b of read" :key="b.book_id">
+          <div class="book-group-content">
+            <div class="book-container" v-for="b of read" :key="b.book_id">
               <book :book="b"></book>
             </div>
           </div>
         </div>
         <div class="book-group">
           <div class="book-group-title">打算读({{wish.length}}本)</div>
-          <div class="row container-fluid">
-            <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-1" v-for="b of wish" :key="b.book_id">
+          <div class="book-group-content">
+            <div class="book-container" v-for="b of wish" :key="b.book_id">
               <book :book="b"></book>
             </div>
           </div>
@@ -33,7 +33,6 @@
 
 <script>
 import API from '../assets/script/api'
-
 import Book from './Book.vue'
 
 export default {
@@ -73,7 +72,12 @@ export default {
     background-image: url('../assets/image/background.jpg');
 
     .content {
+      text-align:center;
+
       .gallery {
+        width: 100%;
+        display: inline-block;
+
         .book-group {
           padding: 6px;
           .row {
@@ -86,6 +90,55 @@ export default {
             line-height: 42px;
             padding-left: 10px;
             color: #09c;
+          }
+
+          .book-group-content {
+            position: relative;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-flow: row wrap;
+            align-content: flex-start;
+
+            @media screen and (max-width: 500px) {
+              .book-container {
+                flex: 0 0 50%;
+              }
+            }
+
+            @media screen and (min-width: 500px) {
+              .book-container {
+                flex: 0 0 33.3%;
+              }
+            }
+
+            @media screen and (min-width: 650px) {
+              .book-container {
+                flex: 0 0 25%;
+              }
+            }
+
+            @media screen and (min-width: 800px) {
+              .book-container {
+                flex: 0 0 20%;
+              }
+            }
+            @media screen and (min-width: 1200px) {
+              .book-container {
+                flex: 0 0 14.28%;
+              }
+            }
+            @media screen and (min-width: 1550px) {
+              .book-container {
+                flex: 0 0 10%;
+              }
+            }
+
+            .book-container {
+              display: inline-block;
+              text-align: center;
+              box-sizing: border-box;
+            }
           }
         }
       }
