@@ -18,27 +18,43 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  @import '../assets/style/theme.scss';
+
   .index {
     position: relative;
     width: 100%;
     height: 100%;
-    overflow:auto;
-    background-image: url('../assets/image/bg.png');
+    background: url('../assets/image/bg.jpg') no-repeat center top;
+    background-size: cover;
+    text-align: center;
+
+    @media screen and (max-width: 500px) {
+      .info {
+        width: 100%;
+        height: 90px;
+        bottom: 0;
+      }
+    }
+
+    @media screen and (min-width: 500px) {
+      .info {
+        width: 500px;
+        height: 110px;
+        left: 50%;
+        margin-left: -250px;
+        top: 50%;
+      }
+    }
 
     .info {
-      position: absolute;
-      width: 560px;
-      height: 110px;
-      background-color: #09c;
-      left: 50%;
-      margin-left: -280px;
-      top: 50%;
+      position: fixed;
+      background-color: $theme-color;
       opacity: 0.8;
 
       .title {
         text-align: center;
         padding: 12px;
-        color: #fff;
+        color: $background-font-color;
         font-size: 24px;
       }
       .link {
@@ -48,7 +64,7 @@ export default {
 
         a {
           padding: 12px;
-          color: #fff;
+          color: $background-font-color;
           font-size: 18px;
         }
       }

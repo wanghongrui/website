@@ -5,10 +5,12 @@
 </template>
 
 <style lang="scss" scoped>
+  @import '../assets/style/theme.scss';
+
   .header {
     .title {
       line-height: 60px;
-      color: #FFF;
+      color: $background-font-color;
       font-size: 18px;
       margin-left: 10px;
       white-space:nowrap;

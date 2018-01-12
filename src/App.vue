@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="header-container">
+    <div id="header" class="header-container">
       <vheader></vheader>
     </div>
     <div class="content-container">
@@ -11,11 +11,25 @@
 
 <script>
 import vheader from './components/Header.vue'
+import Headroom from 'headroom.js'
 
 export default {
   name: 'app',
   components: {
     vheader
+  },
+  mounted () {
+    let header = document.getElementById('header')
+    let headroom = new Headroom(header, {
+      'tolerance': 0,
+      'offset': 0,
+      'classes': {
+        'initial': 'headroom',
+        'pinned': 'headroom--pinned',
+        'unpinned': 'headroom--unpinned'
+      }
+    })
+    headroom.init()
   }
 }
 </script>
@@ -27,9 +41,7 @@ export default {
 html, body{
   width: 100%;
   height: 100%;
-  overflow: hidden;
   margin: 0;
-
   $header-height: 60px;
 
   #app {
@@ -37,6 +49,7 @@ html, body{
     height: 100%;
     position: relative;
     background: $background-color;
+
     .header-container {
       position: fixed;
       height: $header-height;
@@ -44,12 +57,18 @@ html, body{
       top: 0;
       left: 0;
       right: 0;
-      z-index: 1;
+      z-index: 10;
+
+      &.headroom {position: fixed;top: 0;left: 0;right: 0;transition: all .5s ease-in-out;}  
+      &.headroom--unpinned {top: -60px;}  
+      &.headroom--pinned {top: 0;}
     }
+
     .content-container {
+      position: relative;
       width: 100%;
-      height: calc(100% - #{$header-height});
-      margin-top: $header-height;
+      height: 100%;
+      padding-top: $header-height;
     }
   }
 }

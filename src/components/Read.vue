@@ -1,6 +1,8 @@
 <template>
   <div class="read">
     <div class="content">
+      <BlockUI v-if="loading" :url="loadingImage"></BlockUI>
+
       <div class="gallery">
         <div class="book-group">
           <div class="book-group-title">正在读({{reading.length}}本)</div>
@@ -34,6 +36,7 @@
 <script>
 import API from '../assets/script/api'
 import Book from './Book.vue'
+import LoadingImage from '../assets/image/loading.gif'
 
 export default {
   name: 'read',
@@ -45,7 +48,9 @@ export default {
       userId: '151041935',
       wish: [],
       reading: [],
-      read: []
+      read: [],
+      loadingImage: LoadingImage,
+      loading: false
     }
   },
   mounted () {
@@ -53,7 +58,10 @@ export default {
   },
   methods: {
     getBooks () {
+      this.loading = true
       API.getBooks(this.userId).done(resp => {
+        this.loading = false
+
         resp.collections.forEach(book => {
           this[book.status].push(book)
         })
@@ -67,8 +75,6 @@ export default {
   .read {
     position: relative;
     width: 100%;
-    height: 100%;
-    overflow:auto;
     background-image: url('../assets/image/background.jpg');
 
     .content {

@@ -3,8 +3,11 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import BlockUI from 'vue-blockui'
 
 Vue.config.productionTip = false
+
+Vue.use(BlockUI)
 
 /* eslint-disable no-new */
 new Vue({
