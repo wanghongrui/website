@@ -1,2 +1,2 @@
-> [大洪小站](dahong.me)
+> [大洪小站](http://dahong.me)
 
