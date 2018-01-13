@@ -22,7 +22,7 @@ export default {
     let header = document.getElementById('header')
     let headroom = new Headroom(header, {
       'tolerance': 0,
-      'offset': 0,
+      'offset': 60,
       'classes': {
         'initial': 'headroom',
         'pinned': 'headroom--pinned',
@@ -59,7 +59,7 @@ html, body{
       right: 0;
       z-index: 10;
 
-      &.headroom {position: fixed;top: 0;left: 0;right: 0;transition: all .5s ease-in-out;}  
+      &.headroom {position: fixed;top: 0;left: 0;right: 0;transition: all .2s ease-in-out;}  
       &.headroom--unpinned {top: -60px;}  
       &.headroom--pinned {top: 0;}
     }
