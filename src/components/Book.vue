@@ -1,7 +1,7 @@
 <template>
   <div class="book">
     <div class="book-img">
-      <img :src="book.book.image">
+      <img :src="'https://images.weserv.nl/?url=' + book.book.image.substring(7)">
     </div>
     <div class="book-title">
       <a class="book-href" :href="book.book.alt" target="_blank" :title="book.book.summary">{{book.book.title}}</a>
