@@ -1,0 +1,4612 @@
+{
+  "version": 8,
+  "metadata": {
+  },
+  "sources": {
+	"osm": {
+	  "type": "vector",
+	  "tiles": [
+			"http://demo.zjditu.cn/vtiles/{z}/{x}/{y}.mvt"
+	  ]
+	},
+	"tdt-zj": {
+	  "type": "raster",
+	  "tiles": [
+		"http://localhost:9090/tile_zj/ZJEMAP_2D/wmts?layer=TDT_ZJEMAP&style=default&tilematrixset=default028mm&Service=WMTS&Request=GetTile&Version=1.0.0&Format=image%2Fjpgpng&TileMatrix={z}&TileCol={x}&TileRow={y}"
+	  ],
+	  "tileSize": 256,
+	  "minzoom": 6,
+	  "maxzoom": 19
+	}
+  },
+  "sprite": "http://47.97.24.100:8899/icons/streets",
+  "glyphs": "http://demo.zjditu.cn/vfont/{fontstack}/{range}.pbf",
+  "layers": [
+	{
+	  "id": "background",
+	  "tree-path": "背景-底图",
+	  "type": "background",
+	  "layout": {
+		"visibility": "visible"
+	  },
+	  "paint": {
+		"background-color": "rgba(245, 244, 243, 1)"
+	  }
+	},
+	{
+	  "id": "tdt-zj",
+	  "tree-path": "浙江-底图",
+	  "type": "raster",
+	  "source": "tdt-zj",
+	  "minzoom": 15,
+	  "maxzoom": 19,
+	  "layout": {
+		"visibility": "none"
+	  },
+	  "name": "天地图15-19"
+	},
+	{
+	  "id": "河流面",
+	  "tree-path": "面-水系",
+	  "type": "fill",
+	  "source": "osm",
+	  "source-layer": "hyd_py",
+	  "minzoom": 7,
+	  "filter": [
+		"all",
+		[
+		  "!=",
+		  "fcode",
+		  "2602000500"
+		]
+	  ],
+	  "layout": {
+		"visibility": "visible"
+	  },
+	  "paint": {
+		"fill-color": "rgba(171, 198, 239, 1)",
+		"fill-outline-color": "rgba(171, 198, 239, 1)"
+	  }
+	},
+	{
+	  "id": "河流面d",
+	  "tree-path": "岛-水系",
+	  "type": "fill",
+	  "source": "osm",
+	  "source-layer": "hyd_py",
+	  "minzoom": 7,
+	  "layout": {
+		"visibility": "visible"
+	  },
+	  "filter": [
+		"all",
+		[
+		  "==",
+		  "fcode",
+		  "2602000500"
+		]
+	  ],
+	  "paint": {
+		"fill-color": "rgba(245, 244, 243, 1)"
+	  }
+	},
+	{
+	  "id": "露天体育场",
+	  "tree-path": "露天体育场-居民地",
+	  "type": "fill",
+	  "source": "osm",
+	  "source-layer": "res_py",
+	  "minzoom": 9,
+	  "layout": {
+		"visibility": "visible"
+	  },
+	  "paint": {
+		"fill-color": {
+		  "default": "rgba(231, 222, 208, 1)",
+		  "type": "categorical",
+		  "property": "fcode",
+		  "stops": [
+			[
+			  "3404040500",
+			  "rgba(171, 198, 239, 1)"
+			],
+			[
+			  "3404010500",
+			  "rgba(255, 190, 190, 1)"
+			],
+			[
+			  "3404090500",
+			  "rgba(255, 190, 190, 1)"
+			]
+		  ]
+		}
+	  }
+	},
+	{
+	  "id": "草坪面",
+	  "tree-path": "绿地-居民地",
+	  "type": "fill",
+	  "source": "osm",
+	  "source-layer": "veg_py",
+	  "minzoom": 7,
+	  "layout": {
+		"visibility": "visible"
+	  },
+	  "paint": {
+		"fill-color": "rgba(187, 215, 141, 1)"
+	  }
+	},
+	{
+	  "id": "isle",
+	  "tree-path": "岛-水系",
+	  "type": "fill",
+	  "source": "osm",
+	  "source-layer": "hyd_py",
+	  "layout": {
+		"visibility": "visible"
+	  },
+	  "paint": {
+		"fill-color": "rgba(245, 245, 245, 1)"
+	  },
+	  "maxzoom": 22,
+	  "minzoom": 7,
+	  "filter": [
+		"all",
+		[
+		  "==",
+		  "fcode",
+		  "2507000500"
+		]
+	  ]
+	},
+	{
+	  "id": "省级行政区划界限",
+	  "tree-path": "省级行政区划界限-界限",
+	  "type": "line",
+	  "source": "osm",
+	  "source-layer": "bou_ln",
+	  "layout": {
+		"visibility": "visible"
+	  },
+	  "paint": {
+		"line-dasharray": [
+		  30,
+		  10,
+		  10,
+		  10,
+		  10,
+		  10
+		],
+		"line-color": "rgba(60, 60, 60, 1)",
+		"line-width": 0.4
+	  },
+	  "filter": [
+		"all",
+		[
+		  "==",
+		  "fcode",
+		  "6302011314"
+		]
+	  ],
+	  "maxzoom": 14,
+	  "minzoom": 7
+	},
+	{
+	  "id": "地级行政区划界限",
+	  "tree-path": "地级行政区划界限-界限",
+	  "type": "line",
+	  "source": "osm",
+	  "source-layer": "bou_ln",
+	  "layout": {
+		"visibility": "visible"
+	  },
+	  "paint": {
+		"line-dasharray": [
+		  30,
+		  10,
+		  10,
+		  10,
+		  10,
+		  10
+		],
+		"line-color": "rgba(150,149,149, 1)",
+		"line-width": 0.4
+	  },
+	  "filter": [
+		"all",
+		[
+		  "==",
+		  "fcode",
+		  "6402011314"
+		]
+	  ],
+	  "maxzoom": 14,
+	  "minzoom": 7
+	},
+	{
+	  "id": "县级行政区划界限",
+	  "tree-path": "县级行政区划界限-界限",
+	  "type": "line",
+	  "source": "osm",
+	  "source-layer": "bou_ln",
+	  "layout": {
+		"visibility": "visible"
+	  },
+	  "paint": {
+		"line-dasharray": [
+		  30,
+		  10,
+		  10,
+		  10,
+		  10,
+		  10
+		],
+		"line-color": "rgba(150,150, 150, 1)",
+		"line-width": 0.4
+	  },
+	  "filter": [
+		"all",
+		[
+		  "==",
+		  "fcode",
+		  "6502011314"
+		]
+	  ],
+	  "maxzoom": 14,
+	  "minzoom": 7
+	},
+	{
+	  "id": "乡级行政区划界限",
+	  "tree-path": "乡级行政区划界限-界限",
+	  "type": "line",
+	  "source": "osm",
+	  "source-layer": "bou_ln",
+	  "layout": {
+		"visibility": "visible"
+	  },
+	  "paint": {
+		"line-dasharray": [
+		  30,
+		  10,
+		  10,
+		  10,
+		  10,
+		  10
+		],
+		"line-color": "rgba(150,150, 150, 1)",
+		"line-width": 0.4
+	  },
+	  "filter": [
+		"all",
+		[
+		  "==",
+		  "fcode",
+		  "6602011314"
+		]
+	  ],
+	  "maxzoom": 14,
+	  "minzoom": 7
+	},
+	{
+	  "id": "支线",
+	  "tree-path": "中线-支线-道路",
+	  "type": "line",
+	  "source": "osm",
+	  "source-layer": "tra_net_ln",
+	  "minzoom": 7,
+	  "filter": [
+		"any",
+		[
+		  "in",
+		  "display",
+		  "4305030313",
+		  "4305040313"
+		]
+	  ],
+	  "layout": {
+		"line-cap": "round",
+		"line-join": "round"
+	  },
+	  "paint": {
+		"line-width": {
+		  "stops": [
+			[
+			  15,
+			  2
+			],
+			[
+			  16,
+			  3
+			],
+			[
+			  17,
+			  4
+			],
+			[
+			  18,
+			  5
+			]
+		  ]
+		},
+		"line-color": "rgba(255, 255, 255, 1)",
+		"line-offset": 0
+	  }
+	},
+	{
+	  "id": "people-route",
+	  "tree-path": "边线-支线-道路",
+	  "type": "line",
+	  "source": "osm",
+	  "source-layer": "tra_net_ln",
+	  "minzoom": 7,
+	  "filter": [
+		"any",
+		[
+		  "in",
+		  "display",
+		  "4305030313",
+		  "4305040313"
+		]
+	  ],
+	  "layout": {
+		"line-cap": "round",
+		"line-join": "round"
+	  },
+	  "paint": {
+		"line-width": {
+		  "stops": [
+			[
+			  15,
+			  2.6
+			],
+			[
+			  16,
+			  4
+			],
+			[
+			  17,
+			  6
+			],
+			[
+			  18,
+			  7
+			]
+		  ]
+		},
+		"line-color": {
+		  "stops": [
+			[
+			  15,
+			  "rgba(155, 155, 155, 1)"
+			],
+			[
+			  16,
+			  "rgba(132, 123, 93, 1)"
+			]
+		  ]
+		},
+		"line-offset": 0
+	  }
+	},
+	{
+	  "id": "tra_net_ln-9-Stroke",
+	  "tree-path": "边线-支线-道路",
+	  "ref": "tra_net_ln-9",
+	  "paint": {
+		"line-width": {
+		  "stops": [
+			[
+			  15,
+			  4.6
+			],
+			[
+			  16,
+			  6
+			],
+			[
+			  17,
+			  8
+			],
+			[
+			  18,
+			  9
+			]
+		  ]
+		},
+		"line-color": {
+		  "stops": [
+			[
+			  15,
+			  "rgba(200, 191, 161, 1)"
+			],
+			[
+			  16,
+			  "rgba(180, 170, 123, 1)"
+			],
+			[
+			  17,
+			  "rgba(190, 180, 143, 1)"
+			],
+			[
+			  18,
+			  "rgba(190, 180, 143, 1)"
+			]
+		  ]
+		},
+		"line-offset": 0
+	  }
+	},
+	{
+	  "id": "tra_net_ln-other-stroke",
+	  "tree-path": "边线-其他公路-道路",
+	  "ref": "tra_net_ln-other",
+	  "paint": {
+		"line-width": {
+		  "stops": [
+			[
+			  15,
+			  5
+			],
+			[
+			  17,
+			  9
+			],
+			[
+			  18,
+			  10
+			]
+		  ]
+		},
+		"line-color": {
+		  "stops": [
+			[
+			  15,
+			  "rgba(220, 211, 181, 1)"
+			],
+			[
+			  16,
+			  "rgba(220, 210, 173, 1)"
+			]
+		  ]
+		},
+		"line-offset": 0
+	  }
+	},
+	{
+	  "id": "tra_net_ln-xjxq-stroke",
+	  "tree-path": "边线-乡路、机耕路、小路-道路",
+	  "ref": "tra_net_ln-xjxq",
+	  "paint": {
+		"line-width": 2,
+		"line-color": "rgba(203, 192, 162, 1)",
+		"line-offset": 0
+	  }
+	},
+	{
+	  "id": "tra_net_ln-ramp-stroke",
+	  "tree-path": "边线-匝道-道路",
+	  "ref": "tra_net_ln-ramp",
+	  "paint": {
+		"line-color": {
+		  "stops": [
+			[
+			  14,
+			  "rgba(125, 89, 203, 1)"
+			],
+			[
+			  15,
+			  "rgba(142, 97, 209, 1)"
+			],
+			[
+			  16,
+			  "rgba(94, 55, 170, 1)"
+			]
+		  ]
+		},
+		"line-width": {
+		  "stops": [
+			[
+			  13,
+			  3.6
+			],
+			[
+			  18,
+			  10
+			]
+		  ]
+		}
+	  }
+	},
+	{
+	  "id": "tra_net_ln-x-stroke",
+	  "tree-path": "边线-县道-道路",
+	  "ref": "tra_net_ln-x",
+	  "minzoom": 10,
+	  "paint": {
+		"line-width": {
+		  "stops": [
+			[
+			  9.9,
+			  0
+			],
+			[
+			  10,
+			  3.4
+			],
+			[
+			  11,
+			  3.4
+			],
+			[
+			  12,
+			  4.4
+			],
+			[
+			  13,
+			  5
+			],
+			[
+			  18,
+			  11
+			]
+		  ]
+		},
+		"line-color": {
+		  "stops": [
+			[
+			  11,
+			  "rgba(209, 202, 175, 1)"
+			],
+			[
+			  14,
+			  "rgba(209, 202, 175, 1)"
+			],
+			[
+			  15,
+			  "rgba(214, 200, 120, 1)"
+			]
+		  ]
+		},
+		"line-offset": 0
+	  }
+	},
+	{
+	  "id": "tra_net_ln-xc-stroke",
+	  "tree-path": "边线-乡村路-道路",
+	  "ref": "tra_net_ln-xc",
+	  "minzoom": 10,
+	  "paint": {
+		"line-width": {
+		  "stops": [
+			[
+			  12,
+			  4
+			],
+			[
+			  13,
+			  4.4
+			],
+			[
+			  14,
+			  5
+			],
+			[
+			  15,
+			  6
+			],
+			[
+			  16,
+			  8
+			],
+			[
+			  17,
+			  10
+			],
+			[
+			  18,
+			  9
+			]
+		  ]
+		},
+		"line-color": {
+		  "stops": [
+			[
+			  12,
+			  "rgba(220, 219, 205, 1)"
+			],
+			[
+			  14,
+			  "rgba(220, 219, 205, 1)"
+			],
+			[
+			  15,
+			  "rgba(210, 210, 210, 1)"
+			],
+			[
+			  16,
+			  "rgba(132, 123, 93, 1)"
+			],
+			[
+			  17,
+			  "rgba(132, 123, 93, 1)"
+			],
+			[
+			  18,
+			  "rgba(220, 210, 173, 1)"
+			]
+		  ]
+		},
+		"line-offset": 0
+	  }
+	},
+	{
+	  "id": "tra_net_ln-s-z-stroke",
+	  "tree-path": "边线-省道主干道-道路",
+	  "ref": "tra_net_ln-s-z",
+	  "minzoom": 9,
+	  "paint": {
+		"line-width": {
+		  "stops": [
+			[
+			  8.9,
+			  0
+			],
+			[
+			  9,
+			  2.4
+			],
+			[
+			  10,
+			  2.4
+			],
+			[
+			  11,
+			  4.6
+			],
+			[
+			  12,
+			  5.4
+			],
+			[
+			  13,
+			  7
+			],
+			[
+			  18,
+			  12
+			]
+		  ]
+		},
+		"line-color": {
+		  "stops": [
+		    [
+			  9,
+			  "rgba(255, 244, 175, 1)"
+			],
+			[
+			  10,
+			  "rgba(198, 133, 78, 1)"
+			],
+			[
+			  11,
+			  "rgba(200, 191, 161, 1)"
+			],
+			[
+			  15,
+			  "rgba(214, 185, 90, 1)"
+			]
+		  ]
+		},
+		"line-offset": 0
+	  }
+	},
+	{
+	  "id": "tra_net_ln-9",
+	  "tree-path": "中线-支线-道路",
+	  "type": "line",
+	  "source": "osm",
+	  "source-layer": "tra_net_ln",
+	  "minzoom": 7,
+	  "filter": [
+		"any",
+		[
+		  "in",
+		  "display",
+		  "4305030313",
+		  "4305040313",
+		  "4306000313"
+		]
+	  ],
+	  "layout": {
+		"line-cap": "round",
+		"line-join": "round"
+	  },
+	  "paint": {
+		"line-width": {
+		  "stops": [
+			[
+			  15,
+			  2.6
+			],
+			[
+			  16,
+			  4
+			],
+			[
+			  17,
+			  6
+			],
+			[
+			  18,
+			  7
+			]
+		  ]
+		},
+		"line-color": "rgba(255, 255, 255, 1)",
+		"line-offset": 0
+	  }
+	},
+	{
+	  "id": "tra_net_ln-other",
+	  "tree-path": "中线-其他公路-道路",
+	  "type": "line",
+	  "source": "osm",
+	  "source-layer": "tra_net_ln",
+	  "minzoom": 12,
+	  "filter": [
+		"any",
+		[
+		  "in",
+		  "display",
+		  "4209000313",
+		  "4209010313"
+		]
+	  ],
+	  "layout": {
+		"line-cap": "round",
+		"line-join": "round"
+	  },
+	  "paint": {
+		"line-width": {
+		  "stops": [
+			[
+			  11.9,
+			  0
+			],
+			[
+			  12,
+			  3
+			],
+			[
+			  15,
+			  3
+			],
+			[
+			  17,
+			  7
+			],
+			[
+			  18,
+			  8
+			]
+		  ]
+		},
+		"line-color": "rgba(255, 255, 255, 1)",
+		"line-offset": 0
+	  }
+	},
+	{
+	  "id": "tra_net_ln-xjxq",
+	  "tree-path": "中线-乡路、机耕路、小路-道路",
+	  "type": "line",
+	  "source": "osm",
+	  "source-layer": "tra_net_ln",
+	  "minzoom": 10,
+	  "filter": [
+		"any",
+		[
+		  "in",
+		  "display",
+		  "4204000313",
+		  "4204010313",
+		  "4401000313",
+		  "4403000314",
+		  "4209000313"
+		]
+	  ],
+	  "layout": {
+		"line-cap": "round"
+	  },
+	  "paint": {
+		"line-width": {
+		  "stops": [
+			[
+			  9.9,
+			  0
+			],
+			[
+			  10,
+			  1.4
+			]
+		  ]
+		},
+		"line-color": "rgba(255, 255, 255, 1)",
+		"line-offset": 0
+	  }
+	},
+	{
+	  "id": "tra_net_ln-ramp",
+	  "tree-path": "中线-匝道-道路",
+	  "type": "line",
+	  "source": "osm",
+	  "source-layer": "tra_net_ln",
+	  "minzoom": 7,
+	  "filter": [
+		"all",
+		[
+		  "==",
+		  "display",
+		  "4206000313"
+		]
+	  ],
+	  "layout": {
+		"visibility": "none",
+		"line-cap": "round",
+		"line-join": "round"
+	  },
+	  "paint": {
+		"line-color": "rgba(186, 146, 241, 1)",
+		"line-width": {
+		  "stops": [
+			[
+			  13,
+			  2
+			],
+			[
+			  18,
+			  8
+			]
+		  ]
+		}
+	  }
+	},
+	{
+	  "id": "tra_net_ln-x",
+	  "tree-path": "中线-县道-道路",
+	  "type": "line",
+	  "source": "osm",
+	  "source-layer": "tra_net_ln",
+	  "minzoom": 7,
+	  "filter": [
+		"any",
+		[
+		  "in",
+		  "display",
+		  "4203010313",
+		  "4203020313",
+		  "4305020313",
+		  "4205000313",
+		  "4205010313"
+		]
+	  ],
+	  "layout": {
+		"line-cap": "round",
+		"line-join": "round"
+	  },
+	  "paint": {
+		"line-width": {
+		  "stops": [
+			[
+			  9,
+			  1
+			],
+			[
+			  10,
+			  1.4
+			],
+			[
+			  11,
+			  1.4
+			],
+			[
+			  12,
+			  2.4
+			],
+			[
+			  13,
+			  3
+			],
+			[
+			  18,
+			  9
+			]
+		  ]
+		},
+		"line-color": {
+		  "stops": [
+			[
+			  10,
+			  "rgba(255, 244, 175, 1)"
+			],
+			[
+			  14,
+			  "rgba(255, 244, 175, 1)"
+			],
+			[
+			  15,
+			  "rgba(255, 244, 140, 1)"
+			],
+			[
+			  16,
+			  "rgba(254, 240, 145, 1)"
+			]
+		  ]
+		},
+		"line-offset": 0
+	  }
+	},
+	{
+	  "id": "tra_net_ln-xc",
+	  "tree-path": "中线-乡村路-道路",
+	  "type": "line",
+	  "source": "osm",
+	  "source-layer": "tra_net_ln",
+	  "minzoom": 10,
+	  "filter": [
+		"any",
+		[
+		  "in",
+		  "display",
+		  "4402000313"
+		]
+	  ],
+	  "layout": {
+		"line-cap": "round",
+		"line-join": "round"
+	  },
+	  "paint": {
+		"line-width": {
+		  "stops": [
+			[
+			  9.9,
+			  0
+			],
+			[
+			  10,
+			  2
+			],
+			[
+			  12,
+			  2
+			],
+			[
+			  13,
+			  2.4
+			],
+			[
+			  14,
+			  3
+			],
+			[
+			  15,
+			  4
+			],
+			[
+			  16,
+			  6
+			],
+			[
+			  17,
+			  8
+			],
+			[
+			  18,
+			  7
+			]
+		  ]
+		},
+		"line-color": {
+		  "stops": [
+			[
+			  12,
+			  "rgba(223, 223, 215, 1)"
+			],
+			[
+			  13,
+			  "rgba(255, 255, 255, 1)"
+			],
+			[
+			  15,
+			  "rgba(255, 255, 255, 1)"
+			],
+			[
+			  16,
+			  "rgba(254, 255, 255, 1)"
+			],
+			[
+			  17,
+			  "rgba(254, 255, 255, 1)"
+			],
+			[
+			  18,
+			  "rgba(255, 255, 255, 1)"
+			]
+		  ]
+		},
+		"line-offset": 0
+	  }
+	},
+	{
+	  "id": "tra_net_ln-s-z",
+	  "tree-path": "中线-省道主干道-道路",
+	  "type": "line",
+	  "source": "osm",
+	  "source-layer": "tra_net_ln",
+	  "minzoom": 7,
+	  "filter": [
+		"any",
+		[
+		  "in",
+		  "display",
+		  "4305010313",
+		  "4202010313"
+		]
+	  ],
+	  "layout": {
+		"visibility": "visible",
+		"line-cap": "butt",
+		"line-join": "round"
+	  },
+	  "paint": {
+		"line-width": {
+		  "stops": [
+			[
+			  8,
+			  1
+			],
+			[
+			  9,
+			  1.5
+			],
+			[
+			  10,
+			  2
+			],
+			[
+			  11,
+			  2.6
+			],
+			[
+			  12,
+			  3.4
+			],
+			[
+			  13,
+			  5
+			],
+			[
+			  18,
+			  10
+			]
+		  ]
+		},
+		"line-color": {
+		  "stops": [
+			[
+			  9,
+			  "rgba(255, 244, 175, 1)"
+			],
+			[
+			  10,
+			  "rgba(255, 244, 175, 1)"
+			],
+			[
+			  11,
+			  "rgba(254, 240, 158, 1)"
+			],
+			[
+			  15,
+			  "rgba(254, 240, 158, 1)"
+			],
+			[
+			  16,
+			  "rgba(254, 235, 130, 1)"
+			]
+		  ]
+		},
+		"line-offset": 0
+	  }
+	},
+	
+	
+	{
+	  "id": "tra_ln-h-stroke",
+	  "tree-path": "中线-车渡-道路",
+	  "type": "line",
+	  "source": "osm",
+	  "source-layer": "tra_ln",
+	  "minzoom": 10,
+	  "filter": [
+		"any",
+		[
+		  "in",
+		  "fcode",
+		  "4905020314"
+		]
+	  ],
+	  "layout": {
+		"visibility": "visible",
+		"line-cap": "round",
+		"line-join": "round"
+	  },
+	  "paint": {
+		"line-color": {
+		  "stops": [
+			[
+			  11,
+			  "rgba(0, 0, 255, 0.5)"
+			],
+			[
+			  12,
+			  "rgba(255, 255, 255, 0.5)"
+			],
+			[
+			  20,
+			  "rgba(255, 255, 255, 0.5)"
+			]
+		  ]
+		},
+		"line-width": {
+		  "stops": [
+			[
+			  10,
+			  2
+			],
+			[
+			  11,
+			  2
+			],
+			[
+			  12,
+			  2.7
+			],
+			[
+			  17,
+			  3
+			],
+			[
+			  19,
+			  4
+			],
+			[
+			  20,
+			  4
+			]
+		  ]
+		}
+	  }
+	},
+	
+	{
+	  "id": "tra_ln-h-stroke-bianxian",
+	  "tree-path": "边线-车渡-道路",
+	  "type": "line",
+	  "source": "osm",
+	  "source-layer": "tra_ln",
+	  "minzoom": 10,
+        "filter": [
+		"any",
+		[
+		  "in",
+		  "fcode",
+		  "4905020314"
+		]
+	  ],
+	  "paint": {
+		"line-color": {
+		  "stops": [
+                        [
+			  10,
+			  "rgba(0, 0, 255, 0.5)"
+			],
+			[
+			  11,
+			  "rgba(0, 0, 255, 0.5)"
+			],
+			[
+			  14,
+			  "rgba(0, 0, 255, 0.5)"
+			],
+			[
+			  15,
+			  "rgba(0, 0, 255, 0.5)"
+			],
+			[
+			  16,
+			  "rgba(0, 0, 255, 0.5)"
+			]
+		  ]
+		},
+		"line-width": {
+		  "stops": [
+			[
+			  10,
+			  3
+			],
+			[
+			  11,
+			  4
+			],
+			[
+			  12,
+			  4
+			],
+			[
+			  17,
+			  5
+			],
+			[
+			  19,
+			  6
+			],
+			[
+			  20,
+			  6
+			]
+		  ]
+		}
+	  }
+	},
+    
+	
+	
+	
+	
+    {
+	  "id": "tra_net_ln-g-stroke",
+	  "tree-path": "边线-国道、快速路-道路",
+	  "type": "line",
+	  "source": "osm",
+	  "source-layer": "tra_net_ln",
+	  "minzoom": 10,
+	  "filter": [
+		"any",
+		[
+		  "in",
+		  "display",
+		  "4201010313",
+		  "4201020313",
+		  "4302000414",
+		  "4303000313"
+		]
+	  ],
+	  "layout": {
+		"visibility": "visible",
+		"line-cap": "round",
+		"line-join": "round"
+	  },
+	  "paint": {
+		"line-color": {
+		  "stops": [
+			[
+			  10,
+			  "rgba(198, 133, 78, 1)"
+			],
+			[
+			  11,
+			  "rgba(208, 143, 88, 1)"
+			],
+			[
+			  14,
+			  "rgba(208, 143, 88, 1)"
+			],
+			[
+			  15,
+			  "rgba(196, 124, 73, 1)"
+			],
+			[
+			  16,
+			  "rgba(176, 98, 55, 1)"
+			]
+		  ]
+		},
+		"line-width": {
+		  "stops": [
+			[
+			  10.9,
+			  0
+			],
+			[
+			  11,
+			  4
+			],
+			[
+			  12,
+			  6
+			],
+			[
+			  19,
+			  14
+			]
+		  ]
+		}
+	  }
+	},
+	{
+	  "id": "tra_net_ln-g",
+	  "tree-path": "中线-国道、快速路-道路",
+	  "type": "line",
+	  "source": "osm",
+	  "source-layer": "tra_net_ln",
+	  "minzoom": 7,
+	  "filter": [
+		"any",
+		[
+		  "in",
+		  "display",
+		  "4201010313",
+		  "4201020313",
+		  "4302000414",
+		  "4303000313"
+		]
+	  ],
+	  "layout": {
+		"visibility": "visible",
+		"line-cap": "round",
+		"line-join": "round"
+	  },
+	  "paint": {
+		"line-color": {
+		  "stops": [
+			[
+			  8,
+			  "rgba(255, 215, 140, 1)"
+			],
+			[
+			  10,
+			  "rgba(255, 215, 140, 1)"
+			],
+			[
+			  11,
+			  "rgba(254, 205, 120, 1)"
+			],
+			[
+			  17,
+			  "rgba(254, 205, 120, 1)"
+			],
+			[
+			  18,
+			  "rgba(254, 205, 110, 1)"
+			]
+		  ]
+		},
+		"line-width": {
+		  "stops": [
+			[
+			  8,
+			  1.2
+			],
+			[
+			  9,
+			  1.4
+			],
+			[
+			  10,
+			  2.2
+			],
+			[
+			  11,
+			  3
+			],
+			[
+			  19,
+			  12
+			]
+		  ]
+		}
+	  }
+	},
+	{
+	  "id": "tra_net_ln-h-stroke",
+	  "tree-path": "边线-高速-道路",
+	  "ref": "tra_net_ln-h",
+	  "minzoom": 10,
+	  "paint": {
+		"line-color": {
+		  "stops": [
+			[
+			  11,
+			  "rgba(125, 89, 203, 1)"
+			],
+			[
+			  14,
+			  "rgba(125, 89, 203, 1)"
+			],
+			[
+			  15,
+			  "rgba(142, 97, 209, 1)"
+			],
+			[
+			  16,
+			  "rgba(94, 55, 170, 1)"
+			]
+		  ]
+		},
+		"line-width": {
+		  "stops": [
+			[
+			  10.9,
+			  0
+			],
+			[
+			  11,
+			  4.2
+			],
+			[
+			  12,
+			  7
+			],
+			[
+			  17,
+			  14
+			],
+			[
+			  19,
+			  14
+			]
+		  ]
+		}
+	  }
+	},
+	{
+	  "id": "tra_net_ln-h",
+	  "tree-path": "中线-高速-道路",
+	  "type": "line",
+	  "source": "osm",
+	  "source-layer": "tra_net_ln",
+	  "minzoom": 7,
+	  "filter": [
+		"any",
+		[
+		  "in",
+		  "display",
+		  "4200010313",
+		  "4200020313"
+		]
+	  ],
+	  "layout": {
+		"visibility": "visible",
+		"line-cap": "round",
+		"line-join": "round"
+	  },
+	  "paint": {
+		"line-color": {
+		  "stops": [
+			[
+			  5,
+			  "rgba(194, 159, 243, 1)"
+			],
+			[
+			  10,
+			  "rgba(194, 159, 243, 1)"
+			],
+			[
+			  11,
+			  "rgba(186, 146, 241, 1)"
+			]
+		  ]
+		},
+		"line-width": {
+		  "stops": [
+			[
+			  7,
+			  1.5
+			],
+			[
+			  8,
+			  1.8
+			],
+			[
+			  10,
+			  2.7
+			],
+			[
+			  11,
+			  3
+			],
+			[
+			  18,
+			  10
+			],
+			[
+			  19,
+			  12
+			]
+		  ]
+		}
+	  }
+	},
+	{
+	  "id": "tra_lrr_ln_rail-blcak",
+	  "tree-path": "边线-铁路-道路",
+	  "ref": "tra_lrr_ln_rail-white",
+	  "paint": {
+		"line-color": "#AAAAAA",
+		"line-width": 2.2
+	  }
+	},
+	{
+	  "id": "tra_lrr_ln_rail-white",
+	  "tree-path": "中线-铁路-道路",
+	  "type": "line",
+	  "source": "osm",
+	  "source-layer": "tra_lrr_ln",
+	  "minzoom": 8,
+	  "filter": [
+		"all",
+		[
+		  "in",
+		  "fcode",
+		  "4101010314",
+		  "4101020314",
+		  "4101030314",
+		  "4102010314"
+		]
+	  ],
+	  "layout": {
+		"visibility": "visible",
+		"line-cap": "round",
+		"line-join": "round"
+	  },
+	  "paint": {
+		"line-dasharray": [
+		  6,
+		  8
+		],
+		"line-color": "#FFFFFF",
+		"line-width": 1.6
+	  }
+	},
+	{
+	  "id": "asst_ln-9-Stroke",
+	  "tree-path": "边线-支线-辅助线",
+	  "ref": "asst_ln-9",
+	  "paint": {
+		"line-width": {
+		  "stops": [
+			[
+			  15,
+			  4.6
+			],
+			[
+			  16,
+			  6
+			],
+			[
+			  17,
+			  8
+			],
+			[
+			  18,
+			  9
+			]
+		  ]
+		},
+		"line-color": {
+		  "stops": [
+			[
+			  15,
+			  "rgba(200, 191, 161, 1)"
+			],
+			[
+			  16,
+			  "rgba(180, 170, 123, 1)"
+			],
+			[
+			  17,
+			  "rgba(190, 180, 143, 1)"
+			],
+			[
+			  18,
+			  "rgba(190, 180, 143, 1)"
+			]
+		  ]
+		},
+		"line-offset": 0
+	  }
+	},
+	{
+	  "id": "asst_ln-9",
+	  "tree-path": "中线-支线-辅助线",
+	  "type": "line",
+	  "source": "osm",
+	  "source-layer": "asst_ln",
+	  "minzoom": 13,
+	  "maxzoom": 24,
+	  "filter": [
+		"any",
+		[
+		  "in",
+		  "display",
+		  "4305030313",
+		  "4305040313",
+		  "4306000313"
+		]
+	  ],
+	  "layout": {
+		"line-cap": "butt",
+		"line-join": "round"
+	  },
+	  "paint": {
+		"line-width": {
+		  "stops": [
+			[
+			  15,
+			  2.6
+			],
+			[
+			  16,
+			  4
+			],
+			[
+			  17,
+			  6
+			],
+			[
+			  18,
+			  7
+			]
+		  ]
+		},
+		"line-color": "rgba(255, 255, 255, 1)",
+		"line-offset": 0
+	  }
+	},
+	{
+	  "id": "asst_ln-other-stroke",
+	  "tree-path": "边线-其他公路-辅助线",
+	  "ref": "asst_ln-other",
+	  "minzoom": 13,
+	  "paint": {
+		"line-width": {
+		  "stops": [
+			[
+			  15,
+			  2
+			],
+			[
+			  17,
+			  9
+			],
+			[
+			  18,
+			  10
+			]
+		  ]
+		},
+		"line-color": {
+		  "stops": [
+			[
+			  15,
+			  "rgba(220, 211, 181, 1)"
+			],
+			[
+			  16,
+			  "rgba(220, 210, 173, 1)"
+			]
+		  ]
+		},
+		"line-offset": 0
+	  }
+	},
+	{
+	  "id": "asst_ln-other",
+	  "tree-path": "中线-其他公路-辅助线",
+	  "type": "line",
+	  "source": "osm",
+	  "source-layer": "asst_ln",
+	  "minzoom": 13,
+	  "filter": [
+		"any",
+		[
+		  "in",
+		  "display",
+		  "4209000313",
+		  "4209010313"
+		]
+	  ],
+	  "layout": {
+		"line-cap": "butt",
+		"line-join": "round"
+	  },
+	  "paint": {
+		"line-width": {
+		  "stops": [
+			[
+			  15,
+			  3
+			],
+			[
+			  16,
+			  5
+			],
+			[
+			  17,
+			  7
+			],
+			[
+			  18,
+			  8
+			]
+		  ]
+		},
+		"line-color": "rgba(255, 255, 255, 1)",
+		"line-offset": 0
+	  }
+	},
+	{
+	  "id": "asst_ln-xjxq-stroke",
+	  "tree-path": "边线-乡道、机耕路、小路-辅助线",
+	  "ref": "asst_ln-xjxq",
+	  "minzoom": 13,
+	  "paint": {
+		"line-width": 2,
+		"line-color": "rgba(203, 192, 162, 1)",
+		"line-offset": 0
+	  }
+	},
+	{
+	  "id": "asst_ln-xjxq",
+	  "tree-path": "中线-乡道、机耕路、小路-辅助线",
+	  "type": "line",
+	  "source": "osm",
+	  "source-layer": "asst_ln",
+	  "minzoom": 13,
+	  "filter": [
+		"any",
+		[
+		  "in",
+		  "fcode",
+		  "4204000313",
+		  "4204010313",
+		  "4401000313",
+		  "4403000314",
+		  "4209000313"
+		]
+	  ],
+	  "layout": {
+		"line-cap": "butt"
+	  },
+	  "paint": {
+		"line-width": 1.4,
+		"line-color": "rgba(255, 255, 255, 1)",
+		"line-offset": 0
+	  }
+	},
+	{
+	  "id": "asst_ln-x-stroke",
+	  "tree-path": "边线-县道-辅助线",
+	  "ref": "asst_ln-x",
+	  "minzoom": 13,
+	  "paint": {
+		"line-width": {
+		  "stops": [
+			[
+			  11,
+			  3.4
+			],
+			[
+			  12,
+			  4.4
+			],
+			[
+			  13,
+			  5
+			],
+			[
+			  18,
+			  11
+			]
+		  ]
+		},
+		"line-color": {
+		  "stops": [
+			[
+			  11,
+			  "rgba(209, 202, 175, 1)"
+			],
+			[
+			  14,
+			  "rgba(209, 202, 175, 1)"
+			],
+			[
+			  15,
+			  "rgba(214, 200, 120, 1)"
+			]
+		  ]
+		},
+		"line-offset": 0
+	  }
+	},
+	{
+	  "id": "asst_ln-x",
+	  "tree-path": "中线-县道-辅助线",
+	  "type": "line",
+	  "source": "osm",
+	  "source-layer": "asst_ln",
+	  "minzoom": 13,
+	  "filter": [
+		"any",
+		[
+		  "in",
+		  "display",
+		  "4203010313",
+		  "4203020313",
+		  "4305020313",
+		  "4205000313",
+		  "4205010313"
+		]
+	  ],
+	  "layout": {
+		"line-cap": "butt",
+		"line-join": "round"
+	  },
+	  "paint": {
+		"line-width": {
+		  "stops": [
+			[
+			  9,
+			  1
+			],
+			[
+			  10,
+			  1.4
+			],
+			[
+			  11,
+			  1.4
+			],
+			[
+			  12,
+			  2.4
+			],
+			[
+			  13,
+			  3
+			],
+			[
+			  18,
+			  9
+			]
+		  ]
+		},
+		"line-color": {
+		  "stops": [
+			[
+			  10,
+			  "rgba(255, 244, 175, 1)"
+			],
+			[
+			  14,
+			  "rgba(255, 244, 175, 1)"
+			],
+			[
+			  15,
+			  "rgba(255, 244, 140, 1)"
+			],
+			[
+			  16,
+			  "rgba(254, 240, 145, 1)"
+			]
+		  ]
+		},
+		"line-offset": 0
+	  }
+	},
+	{
+	  "id": "asst_ln-xc-stroke",
+	  "tree-path": "边线-乡村路-辅助线",
+	  "ref": "asst_ln-xc",
+	  "minzoom": 13,
+	  "paint": {
+		"line-width": {
+		  "stops": [
+			[
+			  12,
+			  4
+			],
+			[
+			  13,
+			  4.4
+			],
+			[
+			  14,
+			  5
+			],
+			[
+			  15,
+			  6
+			],
+			[
+			  16,
+			  8
+			],
+			[
+			  17,
+			  10
+			],
+			[
+			  18,
+			  9
+			]
+		  ]
+		},
+		"line-color": {
+		  "stops": [
+			[
+			  12,
+			  "rgba(220, 219, 205, 1)"
+			],
+			[
+			  14,
+			  "rgba(220, 219, 205, 1)"
+			],
+			[
+			  15,
+			  "rgba(210, 210, 210, 1)"
+			],
+			[
+			  16,
+			  "rgba(132, 123, 93, 1)"
+			],
+			[
+			  17,
+			  "rgba(132, 123, 93, 1)"
+			],
+			[
+			  18,
+			  "rgba(220, 210, 173, 1)"
+			]
+		  ]
+		},
+		"line-offset": 0
+	  }
+	},
+	{
+	  "id": "asst_ln-xc",
+	  "tree-path": "中线-乡村路-辅助线",
+	  "type": "line",
+	  "source": "osm",
+	  "source-layer": "asst_ln",
+	  "minzoom": 13,
+	  "filter": [
+		"any",
+		[
+		  "in",
+		  "display",
+		  "4402000313"
+		]
+	  ],
+	  "layout": {
+		"line-cap": "butt",
+		"line-join": "round"
+	  },
+	  "paint": {
+		"line-width": {
+		  "stops": [
+			[
+			  12,
+			  2
+			],
+			[
+			  13,
+			  2.4
+			],
+			[
+			  14,
+			  3
+			],
+			[
+			  15,
+			  4
+			],
+			[
+			  16,
+			  6
+			],
+			[
+			  17,
+			  8
+			],
+			[
+			  18,
+			  7
+			]
+		  ]
+		},
+		"line-color": {
+		  "stops": [
+			[
+			  12,
+			  "rgba(223, 223, 215, 1)"
+			],
+			[
+			  13,
+			  "rgba(255, 255, 255, 1)"
+			],
+			[
+			  15,
+			  "rgba(255, 255, 255, 1)"
+			],
+			[
+			  16,
+			  "rgba(254, 255, 255, 1)"
+			],
+			[
+			  17,
+			  "rgba(254, 255, 255, 1)"
+			],
+			[
+			  18,
+			  "rgba(255, 255, 255, 1)"
+			]
+		  ]
+		},
+		"line-offset": 0
+	  }
+	},
+	{
+	  "id": "asst_ln-s-z-stroke",
+	  "tree-path": "边线-省道主干道-辅助线",
+	  "ref": "asst_ln-s-z",
+	  "minzoom": 13,
+	  "paint": {
+		"line-width": {
+		  "stops": [
+			[
+			  10,
+			  2.4
+			],
+			[
+			  11,
+			  4.6
+			],
+			[
+			  12,
+			  5.4
+			],
+			[
+			  13,
+			  7
+			],
+			[
+			  18,
+			  12
+			]
+		  ]
+		},
+		"line-color": {
+		  "stops": [
+		    [
+			  9,
+			  "rgba(255, 244, 175, 1)"
+			],
+			[
+			  10,
+			  "rgba(198, 133, 78, 1)"
+			],
+			[
+			  11,
+			  "rgba(200, 191, 161, 1)"
+			],
+			[
+			  15,
+			  "rgba(214, 185, 90, 1)"
+			]
+		  ]
+		},
+		"line-offset": 0
+	  }
+	},
+	{
+	  "id": "asst_ln-s-z",
+	  "tree-path": "中线-省道主干道-辅助线",
+	  "type": "line",
+	  "source": "osm",
+	  "source-layer": "asst_ln",
+	  "minzoom": 13,
+	  "filter": [
+		"any",
+		[
+		  "in",
+		  "display",
+		  "4305010313",
+		  "4202010313"
+		]
+	  ],
+	  "layout": {
+		"visibility": "visible",
+		"line-cap": "butt",
+		"line-join": "round"
+	  },
+	  "paint": {
+		"line-width": {
+		  "stops": [
+			[
+			  8,
+			  1
+			],
+			[
+			  9,
+			  1.5
+			],
+			[
+			  10,
+			  2
+			],
+			[
+			  11,
+			  2.6
+			],
+			[
+			  12,
+			  3.4
+			],
+			[
+			  13,
+			  5
+			],
+			[
+			  18,
+			  10
+			]
+		  ]
+		},
+		"line-color": {
+		  "stops": [
+			[
+			  10,
+			  "rgba(255, 244, 175, 1)"
+			],
+			[
+			  11,
+			  "rgba(254, 240, 158, 1)"
+			],
+			[
+			  15,
+			  "rgba(254, 240, 158, 1)"
+			],
+			[
+			  16,
+			  "rgba(254, 235, 130, 1)"
+			]
+		  ]
+		},
+		"line-offset": 0
+	  }
+	},
+	{
+	  "id": "asst_ln-g-stroke",
+	  "tree-path": "边线-国道、快速路-辅助线",
+	  "ref": "asst_ln-g",
+	  "minzoom": 13,
+	  "paint": {
+		"line-color": {
+		  "stops": [
+		    [
+			  9,
+			  "rgba(255, 215, 140, 1)"
+			],
+			[
+			  10,
+			  "rgba(198, 133, 78, 1)"
+			],
+			[
+			  11,
+			  "rgba(208, 143, 88, 1)"
+			],
+			[
+			  14,
+			  "rgba(208, 143, 88, 1)"
+			],
+			[
+			  15,
+			  "rgba(196, 124, 73, 1)"
+			],
+			[
+			  16,
+			  "rgba(176, 98, 55, 1)"
+			]
+		  ]
+		},
+		"line-width": {
+		  "stops": [
+			[
+			  10.9,
+			  0
+			],
+			[
+			  11,
+			  4
+			],
+			[
+			  12,
+			  6
+			],
+			[
+			  19,
+			  14
+			]
+		  ]
+		}
+	  }
+	},
+	{
+	  "id": "asst_ln-g",
+	  "tree-path": "中线-国道、快速路-辅助线",
+	  "type": "line",
+	  "source": "osm",
+	  "source-layer": "asst_ln",
+	  "minzoom": 13,
+	  "filter": [
+		"any",
+		[
+		  "in",
+		  "display",
+		  "4201010313",
+		  "4201020313",
+		  "4302000414",
+		  "4303000313"
+		]
+	  ],
+	  "layout": {
+		"visibility": "visible",
+		"line-cap": "butt",
+		"line-join": "round"
+	  },
+	  "paint": {
+		"line-color": {
+		  "stops": [
+			[
+			  10,
+			  "rgba(255, 215, 140, 1)"
+			],
+			[
+			  11,
+			  "rgba(254, 205, 120, 1)"
+			],
+			[
+			  17,
+			  "rgba(254, 205, 120, 1)"
+			],
+			[
+			  18,
+			  "rgba(254, 205, 110, 1)"
+			]
+		  ]
+		},
+		"line-width": {
+		  "stops": [
+			[
+			  8,
+			  1.2
+			],
+			[
+			  9,
+			  1.4
+			],
+			[
+			  10,
+			  2.2
+			],
+			[
+			  11,
+			  3
+			],
+			[
+			  19,
+			  12
+			]
+		  ]
+		}
+	  }
+	},
+	{
+	  "id": "asst_ln-h-stroke",
+	  "tree-path": "边线-高速-辅助线",
+	  "ref": "asst_ln-h",
+	  "minzoom": 13,
+	  "paint": {
+		"line-color": {
+		  "stops": [
+			[
+			  11,
+			  "rgba(125, 89, 203, 1)"
+			],
+			[
+			  14,
+			  "rgba(125, 89, 203, 1)"
+			],
+			[
+			  15,
+			  "rgba(142, 97, 209, 1)"
+			],
+			[
+			  16,
+			  "rgba(94, 55, 170, 1)"
+			]
+		  ]
+		},
+		"line-width": {
+		  "stops": [
+			[
+			  10.9,
+			  0
+			],
+			[
+			  11,
+			  4.2
+			],
+			[
+			  12,
+			  7
+			],
+			[
+			  17,
+			  14
+			],
+			[
+			  19,
+			  14
+			]
+		  ]
+		}
+	  }
+	},
+	{
+	  "id": "asst_ln-h",
+	  "tree-path": "中线-高速-辅助线",
+	  "type": "line",
+	  "source": "osm",
+	  "source-layer": "asst_ln",
+	  "minzoom": 13,
+	  "filter": [
+		"any",
+		[
+		  "in",
+		  "display",
+		  "4200010313",
+		  "4200020313"
+		]
+	  ],
+	  "layout": {
+		"visibility": "visible",
+		"line-cap": "butt",
+		"line-join": "round"
+	  },
+	  "paint": {
+		"line-color": {
+		  "stops": [
+			[
+			  5,
+			  "rgba(194, 159, 243, 1)"
+			],
+			[
+			  10,
+			  "rgba(194, 159, 243, 1)"
+			],
+			[
+			  11,
+			  "rgba(186, 146, 241, 1)"
+			],
+			[
+			  12,
+			  "rgba(186, 146, 241, 1)"
+			]
+		  ]
+		},
+		"line-width": {
+		  "stops": [
+			[
+			  7,
+			  1.5
+			],
+			[
+			  8,
+			  1.8
+			],
+			[
+			  10,
+			  2.7
+			],
+			[
+			  11,
+			  3
+			],
+			[
+			  18,
+			  10
+			],
+			[
+			  19,
+			  12
+			]
+		  ]
+		}
+	  }
+	},
+	
+	{
+	  "id": "tra_lrr_ln_rail-sub-prev_hz1hx",
+	  "tree-path": "hz1号线-地铁-道路",
+	  "type": "line",
+	  "source": "osm",
+	  "source-layer": "tra_lrr_ln",
+	  "minzoom": 13,
+	  "filter": [
+		"all",
+		[
+		  "in",
+		  "roadcode",
+		  "330100011"
+		]
+	  ],
+	  "layout": {
+		"visibility": "visible",
+		"line-cap": "round",
+		"line-join": "round"
+	  },
+	  "paint": {
+		"line-color": "rgba(255,0,0,1)",
+		"line-width": {
+		  "stops": [
+			[
+			  11,
+			  1.4
+			],
+			[
+			  12,
+			  1.5
+			],
+			[
+			  13,
+			  2
+			]
+		  ]
+		}
+	  }
+	},
+
+{
+	  "id": "tra_lrr_ln_rail-sub-prev_hz2hx",
+	  "tree-path": "hz2号线-地铁-道路",
+	  "type": "line",
+	  "source": "osm",
+	  "source-layer": "tra_lrr_ln",
+	  "minzoom": 13,
+	  "filter": [
+		"all",
+		[
+		  "in",
+		  "roadcode",
+		  "330100021"
+		]
+	  ],
+	  "layout": {
+		"visibility": "visible",
+		"line-cap": "round",
+		"line-join": "round"
+	  },
+	  "paint": {
+		"line-color": "rgba(255,100,0,1)",
+		"line-width": {
+		  "stops": [
+			[
+			  11,
+			  1.4
+			],
+			[
+			  12,
+			  1.5
+			],
+			[
+			  13,
+			  2
+			]
+		  ]
+		}
+	  }
+	},
+
+{
+	  "id": "tra_lrr_ln_rail-sub-prev_hz4hx",
+	  "tree-path": "hz4号线-地铁-道路",
+	  "type": "line",
+	  "source": "osm",
+	  "source-layer": "tra_lrr_ln",
+	  "minzoom": 13,
+	  "filter": [
+		"all",
+		[
+		  "in",
+		  "roadcode",
+		  "330100041"
+		]
+	  ],
+	  "layout": {
+		"visibility": "visible",
+		"line-cap": "round",
+		"line-join": "round"
+	  },
+	  "paint": {
+		"line-color": "rgba(56,168,0,1)",
+		"line-width": {
+		  "stops": [
+			[
+			  11,
+			  1.4
+			],
+			[
+			  12,
+			  1.5
+			],
+			[
+			  13,
+			  2
+			]
+		  ]
+		}
+	  }
+	},
+
+{
+	  "id": "tra_lrr_ln_rail-sub-prev_nb1hx",
+	  "tree-path": "nb1号线-地铁-道路",
+	  "type": "line",
+	  "source": "osm",
+	  "source-layer": "tra_lrr_ln",
+	  "minzoom": 13,
+	  "filter": [
+		"all",
+		[
+		  "in",
+		  "roadcode",
+		  "330200011"
+		]
+	  ],
+	  "layout": {
+		"visibility": "visible",
+		"line-cap": "round",
+		"line-join": "round"
+	  },
+	  "paint": {
+		"line-color": "rgba(0,112,255,1)",
+		"line-width": {
+		  "stops": [
+			[
+			  11,
+			  1.4
+			],
+			[
+			  12,
+			  1.5
+			],
+			[
+			  13,
+			  2
+			]
+		  ]
+		}
+	  }
+	},
+
+{
+	  "id": "tra_lrr_ln_rail-sub-prev_nb2hx",
+	  "tree-path": "nb2号线-地铁-道路",
+	  "type": "line",
+	  "source": "osm",
+	  "source-layer": "tra_lrr_ln",
+	  "minzoom": 13,
+	  "filter": [
+		"all",
+		[
+		  "in",
+		  "roadcode",
+		  "330200021"
+		]
+	  ],
+	  "layout": {
+		"visibility": "visible",
+		"line-cap": "round",
+		"line-join": "round"
+	  },
+	  "paint": {
+		"line-color": "rgba(255,0,0,1)",
+		"line-width": {
+		  "stops": [
+			[
+			  11,
+			  1.4
+			],
+			[
+			  12,
+			  1.5
+			],
+			[
+			  13,
+			  2
+			]
+		  ]
+		}
+	  }
+	},
+
+{
+	  "id": "tra_lrr_ln_rail-sub-prev_hz1td",
+	  "tree-path": "hz1号线-地铁通道-道路",
+	  "type": "line",
+	  "source": "osm",
+	  "source-layer": "tra_lrr_ln",
+	  "minzoom": 17,
+	  "filter": [
+		"all",
+		[
+		  "in",
+		  "roadcode",
+		  "330200012"
+		]
+	  ],
+	  "layout": {
+		"visibility": "visible",
+		"line-cap": "round",
+		"line-join": "round"
+	  },
+	  "paint": {
+		"line-color": "rgba(255,0,0,1)",
+		"line-width": {
+		  "stops": [
+			[
+			  17,
+			  14
+			],
+			[
+			  18,
+			  15
+			],
+			[
+			  19,
+			  20
+			]
+		  ]
+		}
+	  }
+	},
+
+{
+	  "id": "tra_lrr_ln_rail-sub-prev_hz2td",
+	  "tree-path": "hz2号线-地铁通道-道路",
+	  "type": "line",
+	  "source": "osm",
+	  "source-layer": "tra_lrr_ln",
+	  "minzoom": 17,
+	  "filter": [
+		"all",
+		[
+		  "in",
+		  "roadcode",
+		  "330200022"
+		]
+	  ],
+	  "layout": {
+		"visibility": "visible",
+		"line-cap": "round",
+		"line-join": "round"
+	  },
+	  "paint": {
+		"line-color": "rgba(255,100,0,1)",
+		"line-width": {
+		  "stops": [
+			[
+			  17,
+			  14
+			],
+			[
+			  18,
+			  15
+			],
+			[
+			  19,
+			  20
+			]
+		  ]
+		}
+	  }
+	},
+
+{
+	  "id": "tra_lrr_ln_rail-sub-prev_hz4td",
+	  "tree-path": "hz4号线-地铁通道-道路",
+	  "type": "line",
+	  "source": "osm",
+	  "source-layer": "tra_lrr_ln",
+	  "minzoom": 17,
+	  "filter": [
+		"all",
+		[
+		  "in",
+		  "roadcode",
+		  "330200042"
+		]
+	  ],
+	  "layout": {
+		"visibility": "visible",
+		"line-cap": "round",
+		"line-join": "round"
+	  },
+	  "paint": {
+		"line-color": "rgba(56,168,0,1)",
+		"line-width": {
+		  "stops": [
+			[
+			  17,
+			  14
+			],
+			[
+			  18,
+			  15
+			],
+			[
+			  19,
+			  20
+			]
+		  ]
+		}
+	  }
+	},
+
+{
+	  "id": "tra_lrr_ln_rail-sub-prev_nb1td",
+	  "tree-path": "nb1号线-地铁通道-道路",
+	  "type": "line",
+	  "source": "osm",
+	  "source-layer": "tra_lrr_ln",
+	  "minzoom": 17,
+	  "filter": [
+		"all",
+		[
+		  "in",
+		  "roadcode",
+		  "330200012"
+		]
+	  ],
+	  "layout": {
+		"visibility": "visible",
+		"line-cap": "round",
+		"line-join": "round"
+	  },
+	  "paint": {
+		"line-color": "rgba(0,112,255,1)",
+		"line-width": {
+		  "stops": [
+			[
+			  17,
+			  14
+			],
+			[
+			  18,
+			  15
+			],
+			[
+			  19,
+			  20
+			]
+		  ]
+		}
+	  }
+	},
+
+{
+	  "id": "tra_lrr_ln_rail-sub-prev_nb2td",
+	  "tree-path": "nb2号线-地铁通道-道路",
+	  "type": "line",
+	  "source": "osm",
+	  "source-layer": "tra_lrr_ln",
+	  "minzoom": 17,
+	  "filter": [
+		"all",
+		[
+		  "in",
+		  "roadcode",
+		  "330200022"
+		]
+	  ],
+	  "layout": {
+		"visibility": "visible",
+		"line-cap": "round",
+		"line-join": "round"
+	  },
+	  "paint": {
+		"line-color": "rgba(255,0,0,1)",
+		"line-width": {
+		  "stops": [
+			[
+			  17,
+			  14
+			],
+			[
+			  18,
+			  15
+			],
+			[
+			  19,
+			  20
+			]
+		  ]
+		}
+	  }
+	},
+
+{
+	  "id": "tra_lrr_ln_rail-sub-prev_hz1cr",
+	  "tree-path": "hz1号线-地铁出入-道路",
+	  "type": "line",
+	  "source": "osm",
+	  "source-layer": "tra_lrr_ln",
+	  "minzoom": 17,
+	  "filter": [
+		"all",
+		[
+		  "in",
+		  "roadcode",
+		  "330200013"
+		]
+	  ],
+	  "layout": {
+		"visibility": "visible",
+		"line-cap": "round",
+		"line-join": "round"
+	  },
+	  "paint": {
+		"line-color": "rgba(255,0,0,1)",
+		"line-width": {
+		  "stops": [
+			[
+			  17,
+			  2.8
+			],
+			[
+			  18,
+			  3
+			],
+			[
+			  19,
+			  4
+			]
+		  ]
+		}
+	  }
+	},
+
+{
+	  "id": "tra_lrr_ln_rail-sub-prev_hz2cr",
+	  "tree-path": "hz2号线-地铁出入-道路",
+	  "type": "line",
+	  "source": "osm",
+	  "source-layer": "tra_lrr_ln",
+	  "minzoom": 17,
+	  "filter": [
+		"all",
+		[
+		  "in",
+		  "roadcode",
+		  "330200023"
+		]
+	  ],
+	  "layout": {
+		"visibility": "visible",
+		"line-cap": "round",
+		"line-join": "round"
+	  },
+	  "paint": {
+		"line-color": "rgba(255,100,0,1)",
+		"line-width": {
+		  "stops": [
+			[
+			  17,
+			  2.8
+			],
+			[
+			  18,
+			  3
+			],
+			[
+			  19,
+			  4
+			]
+		  ]
+		}
+	  }
+	},
+
+{
+	  "id": "tra_lrr_ln_rail-sub-prev_hz4cr",
+	  "tree-path": "hz4号线-地铁出入-道路",
+	  "type": "line",
+	  "source": "osm",
+	  "source-layer": "tra_lrr_ln",
+	  "minzoom": 17,
+	  "filter": [
+		"all",
+		[
+		  "in",
+		  "roadcode",
+		  "330200043"
+		]
+	  ],
+	  "layout": {
+		"visibility": "visible",
+		"line-cap": "round",
+		"line-join": "round"
+	  },
+	  "paint": {
+		"line-color": "rgba(56,168,0,1)",
+		"line-width": {
+		  "stops": [
+			[
+			  17,
+			  2.8
+			],
+			[
+			  18,
+			  3
+			],
+			[
+			  19,
+			  4
+			]
+		  ]
+		}
+	  }
+	},
+
+{
+	  "id": "tra_lrr_ln_rail-sub-prev_nb1cr",
+	  "tree-path": "nb1号线-地铁出入-道路",
+	  "type": "line",
+	  "source": "osm",
+	  "source-layer": "tra_lrr_ln",
+	  "minzoom": 17,
+	  "filter": [
+		"all",
+		[
+		  "in",
+		  "roadcode",
+		  "330200013"
+		]
+	  ],
+	  "layout": {
+		"visibility": "visible",
+		"line-cap": "round",
+		"line-join": "round"
+	  },
+	  "paint": {
+		"line-color": "rgba(0,112,255,1)",
+		"line-width": {
+		  "stops": [
+			[
+			  17,
+			  2.8
+			],
+			[
+			  18,
+			  3
+			],
+			[
+			  19,
+			  4
+			]
+		  ]
+		}
+	  }
+	},
+
+{
+	  "id": "tra_lrr_ln_rail-sub-prev_nb2cr",
+	  "tree-path": "nb2号线-地铁出入-道路",
+	  "type": "line",
+	  "source": "osm",
+	  "source-layer": "tra_lrr_ln",
+	  "minzoom": 17,
+	  "filter": [
+		"all",
+		[
+		  "in",
+		  "roadcode",
+		  "330200023"
+		]
+	  ],
+	  "layout": {
+		"visibility": "visible",
+		"line-cap": "round",
+		"line-join": "round"
+	  },
+	  "paint": {
+		"line-color": "rgba(255,0,0,1)",
+		"line-width": {
+		  "stops": [
+			[
+			  17,
+			  2.8
+			],
+			[
+			  18,
+			  3
+			],
+			[
+			  19,
+			  4
+			]
+		  ]
+		}
+	  }
+	},
+	
+	{
+	  "id": "高速路",
+	  "tree-path": "高速路-道路-标注",
+	  "type": "symbol",
+	  "source": "osm",
+	  "source-layer": "tra_net_ln",
+	  "minzoom": 7,
+	  "filter": [
+		"any",
+		[
+		  "in",
+		  "fcode",
+		  "4200010313",
+		  "4200020313"
+		]
+	  ],
+	  "layout": {
+		"visibility": "visible",
+		"text-field": "{name}",
+		"symbol-placement": "line",
+		"text-padding": {
+		  "stops": [
+			[
+			  10,
+			  1
+			],
+			[
+			  11,
+			  2
+			]
+		  ]
+		},
+		"text-allow-overlap": false,
+		"text-ignore-placement": false,
+		"text-pitch-alignment": "viewport",
+		"text-max-angle": 45,
+		"text-keep-upright": true,
+		"text-rotation-alignment": "map",
+		"symbol-spacing": 500,
+		"text-font": [
+		  "Microsoft YaHei"
+		],
+		"text-size": {
+		  "stops": [
+			[
+			  10,
+			  11
+			],
+			[
+			  11,
+			  13
+			],
+			[
+			  12,
+			  14
+			]
+		  ]
+		},
+		"icon-rotation-alignment": "viewport"
+	  },
+	  "paint": {
+		"text-color": {
+		  "stops": [
+			[
+			  10,
+			  "rgba(107, 0, 224, 1)"
+			],
+			[
+			  11,
+			  "rgba(83, 9, 159, 1)"
+			],
+			[
+			  13,
+			  "rgba(83, 9, 159, 1)"
+			],
+			[
+			  14,
+			  "rgba(112, 38, 189, 1)"
+			],
+			[
+			  16,
+			  "rgba(112, 38, 189, 1)"
+			],
+			[
+			  17,
+			  "rgba(87, 30, 145, 1)"
+			]
+		  ]
+		},
+		"text-halo-color": "rgba(255, 255, 255, 1)",
+		"text-halo-width": {
+		  "stops": [
+			[
+			  10,
+			  2
+			],
+			[
+			  11,
+			  2
+			],
+			[
+			  12,
+			  2
+			]
+		  ]
+		}
+	  }
+	},
+	{
+	  "id": "国道、快速路-标注",
+	  "tree-path": "国道、快速路-道路-标注",
+	  "type": "symbol",
+	  "source": "osm",
+	  "source-layer": "tra_net_ln",
+	  "minzoom": 11,
+	  "filter": [
+		"any",
+		[
+		  "in",
+		  "fcode",
+		  "4201010313",
+		  "4201020313",
+		  "4302000414",
+		  "4303000313"
+		]
+	  ],
+	  "layout": {
+		"visibility": "visible",
+		"symbol-placement": "line",
+		"text-field": "{name}",
+		"text-font": [
+		  "Arial Unicode MS Bold"
+		],
+		"text-pitch-alignment": "viewport",
+		"text-rotation-alignment": "map",
+		"text-size": {
+		  "stops": [
+			[
+			  13,
+			  13
+			],
+			[
+			  14,
+			  14
+			]
+		  ]
+		},
+		"icon-rotation-alignment": "viewport"
+	  },
+	  "paint": {
+		"text-color": {
+		  "stops": [
+			[
+			  11,
+			  "rgba(134, 70, 17, 1)"
+			],
+			[
+			  13,
+			  "rgba(134, 70, 17, 1)"
+			],
+			[
+			  14,
+			  "rgba(104, 54, 13, 1)"
+			],
+			[
+			  16,
+			  "rgba(104, 54, 13, 1)"
+			],
+			[
+			  17,
+			  "rgba(70, 35, 7, 1)"
+			],
+			[
+			  18,
+			  "rgba(70, 35, 7, 1)"
+			]
+		  ]
+		},
+		"text-halo-color": {
+		  "stops": [
+			[
+			  11,
+			  "rgba(255, 231, 159,1)"
+			],
+			[
+			  13,
+			  "rgba(255, 231, 159,1)"
+			],
+			[
+			  14,
+			  "rgba(255, 222, 102,1)"
+			]
+		  ]
+		},
+		"text-halo-width": {
+		  "stops": [
+			[
+			  10,
+			  1
+			],
+			[
+			  12,
+			  2
+			]
+		  ]
+		}
+	  }
+	},
+	{
+	  "id": "省道主干道-标注",
+	  "tree-path": "省道主干道-道路-标注",
+	  "type": "symbol",
+	  "source": "osm",
+	  "source-layer": "tra_net_ln",
+	  "minzoom": 14,
+	  "filter": [
+		"any",
+		[
+		  "in",
+		  "fcode",
+		  "4305010313",
+		  "4202010313"
+		]
+	  ],
+	  "layout": {
+		"visibility": "visible",
+		"symbol-placement": "line",
+		"text-pitch-alignment": "viewport",
+		"text-rotation-alignment": "map",
+		"text-field": "{name}",
+		"text-font": [
+		  "Arial Unicode MS Bold"
+		],
+		"text-size": {
+		  "stops": [
+			[
+			  12,
+			  11
+			],
+			[
+			  13,
+			  12
+			]
+		  ]
+		},
+		"text-padding": 1,
+		"symbol-spacing": 800,
+		"icon-rotation-alignment": "viewport"
+	  },
+	  "paint": {
+		"text-color": "rgba(104, 54, 13, 1)",
+		"text-halo-color": "rgba(255, 255, 255, 1)",
+		"text-halo-width": {
+		  "stops": [
+			[
+			  12,
+			  1
+			],
+			[
+			  13,
+			  2
+			]
+		  ]
+		}
+	  }
+	},
+	{
+	  "id": "县-标注",
+	  "tree-path": "县道-道路-标注",
+	  "type": "symbol",
+	  "source": "osm",
+	  "source-layer": "tra_net_ln",
+	  "minzoom": 14,
+	  "filter": [
+		"any",
+		[
+		  "in",
+		  "fcode",
+		  "4203010313",
+		  "4203020313",
+		  "4305020313",
+		  "4205000313",
+		  "4205010313"
+		]
+	  ],
+	  "layout": {
+		"symbol-placement": "line",
+		"text-field": "{name}",
+		"text-pitch-alignment": "viewport",
+		"text-rotation-alignment": "map",
+		"text-font": [
+		  "Arial Unicode MS Bold"
+		],
+		"text-size": {
+		  "stops": [
+			[
+			  14,
+			  11
+			],
+			[
+			  15,
+			  12
+			]
+		  ]
+		},
+		"symbol-spacing": 800,
+		"icon-rotation-alignment": "viewport"
+	  },
+	  "paint": {
+		"text-color": "rgba(104, 54, 13, 1)",
+		"text-halo-color": {
+		  "stops": [
+			[
+			  14,
+			  "rgba(255, 255, 255,1)"
+			],
+			[
+			  15,
+			  "rgba(255, 244, 130,1)"
+			]
+		  ]
+		},
+		"text-halo-width": {
+		  "stops": [
+			[
+			  16,
+			  1
+			],
+			[
+			  17,
+			  2
+			]
+		  ]
+		}
+	  }
+	},
+	{
+	  "id": "乡村路-标注",
+	  "tree-path": "乡村路-道路-标注",
+	  "type": "symbol",
+	  "source": "osm",
+	  "source-layer": "tra_net_ln",
+	  "minzoom": 10,
+	  "filter": [
+		"any",
+		[
+		  "in",
+		  "fcode",
+		  "4402000313"
+		]
+	  ],
+	  "layout": {
+		"symbol-placement": "line",
+		"text-field": "{name}",
+		"text-font": [
+		  "Arial Unicode MS Bold"
+		],
+		"text-pitch-alignment": "viewport",
+		"text-rotation-alignment": "map",
+		"text-letter-spacing": 1,
+		"text-size": 11,
+		"icon-rotation-alignment": "viewport"
+	  },
+	  "paint": {
+		"text-color": {
+		  "stops": [
+			[
+			  15,
+			  "rgba(104, 54, 13, 1)"
+			],
+			[
+			  16,
+			  "rgba(104, 54, 13, 1)"
+			]
+		  ]
+		},
+		"text-halo-color": {
+		  "stops": [
+			[
+			  6,
+			  "rgba(255, 255, 255, 1)"
+			],
+			[
+			  10,
+			  "rgba(255, 255, 230, 1)"
+			]
+		  ]
+		},
+		"text-halo-width": {
+		  "stops": [
+			[
+			  16,
+			  1
+			],
+			[
+			  17,
+			  2
+			]
+		  ]
+		}
+	  }
+	},
+	{
+	  "id": "支线-标注",
+	  "tree-path": "支线-道路-标注",
+	  "type": "symbol",
+	  "source": "osm",
+	  "source-layer": "tra_net_ln",
+	  "minzoom": 15,
+	  "filter": [
+		"any",
+		[
+		  "in",
+		  "fcode",
+		  "4305030313",
+		  "4305040313"
+		]
+	  ],
+	  "layout": {
+		"symbol-placement": "line",
+		"text-pitch-alignment": "viewport",
+		"text-rotation-alignment": "map",
+		"text-field": "{name}",
+		"text-font": [
+		  "Arial Unicode MS Bold"
+		],
+		"text-size": 11,
+		"text-letter-spacing": 0,
+		"symbol-spacing": 500,
+		"text-padding": 0,
+		"icon-rotation-alignment": "viewport"
+	  },
+	  "paint": {
+		"text-color": "rgba(104, 54, 13, 1)",
+		"text-halo-width": 1,
+		"text-halo-color": "rgba(255, 255, 255, 1)"
+	  }
+	},
+	{
+	  "id": "地铁-标注",
+	  "tree-path": "地铁-铁路-标注",
+	  "type": "symbol",
+	  "source": "osm",
+	  "source-layer": "tra_lrr_ln",
+	  "minzoom": 13,
+	  "filter": [
+		"all",
+		[
+		  "in",
+		  "roadcode",
+		  "330100011",
+		  "330100021",
+		  "330100041",
+		  "330200011",
+		  "330200021"
+		]
+	  ],
+	  "layout": {
+		"visibility": "visible",
+		"symbol-placement": "line",
+		"text-rotation-alignment": "map",
+		"text-field": "{name}",
+		"text-font": [
+		  "Arial Unicode MS Bold"
+		],
+		"text-size": 12.5,
+		"text-pitch-alignment": "viewport",
+		"icon-rotation-alignment": "viewport"
+	  },
+	  "paint": {
+		"text-color": "rgba(80, 80, 80, 1)",
+		"text-halo-width": 2,
+		"text-halo-color": "rgba(255, 255, 255, 1)"
+	  }
+	},
+	{
+	  "id": "铁路-标注",
+	  "tree-path": "铁路-铁路-标注",
+	  "type": "symbol",
+	  "source": "osm",
+	  "source-layer": "tra_lrr_ln",
+	  "minzoom": 12,
+	  "filter": [
+		"all",
+		[
+		  "in",
+		  "fcode",
+		  "4101010314",
+		  "4101020314",
+		  "4101030314"
+		]
+	  ],
+	  "layout": {
+		"visibility": "visible",
+		"symbol-placement": "line",
+		"text-rotation-alignment": "map",
+		"text-field": "{name}",
+		"text-font": [
+		  "Arial Unicode MS Bold"
+		],
+		"text-size": 11,
+		"text-pitch-alignment": "viewport",
+		"icon-rotation-alignment": "viewport"
+	  },
+	  "paint": {
+		"text-color": "rgba(85, 85, 85, 85)",
+		"text-halo-width": 2,
+		"text-halo-color": "rgba(255, 255, 255, 1)"
+	  }
+	},
+	{
+	  "id": "国道、快速路-icon",
+	  "tree-path": "国道图标-道路-标注",
+	  "type": "symbol",
+	  "source": "osm",
+	  "source-layer": "tra_net_ln",
+	  "minzoom": 14,
+	  "filter": [
+		"all",
+		[
+		  "in",
+		  "fcode",
+		  "4201010313",
+		  "4201020313"
+		],
+		[
+		  "has",
+		  "roadcode"
+		]
+	  ],
+	  "layout": {
+		"visibility": "visible",
+		"symbol-placement": "point",
+		"text-field": "{roadcode}",
+		"text-font": [
+		  "Arial Unicode MS Bold"
+		],
+		"text-pitch-alignment": "viewport",
+		"text-rotation-alignment": "viewport",
+		"text-size": 11,
+		"icon-image": "ic_map_guodao",
+		"icon-text-fit": "both",
+		"icon-text-fit-padding": [
+		  2,
+		  2,
+		  2,
+		  2
+		],
+		"icon-rotation-alignment": "viewport",
+		"icon-padding": {
+		  "stops": [
+			[
+			  7,
+			  20
+			],
+			[
+			  11,
+			  20
+			],
+			[
+			  12,
+			  2
+			]
+		  ]
+		}
+	  },
+	  "paint": {
+		"text-color": "rgba(247, 244, 242, 1)"
+	  }
+	},
+	{
+	  "id": "省道主干道-符号",
+	  "tree-path": "省道主干道图标-道路-标注",
+	  "type": "symbol",
+	  "source": "osm",
+	  "source-layer": "tra_net_ln",
+	  "minzoom": 12,
+	  "filter": [
+		"all",
+		[
+		  "in",
+		  "fcode",
+		  "4202010313"
+		],
+		[
+		  "has",
+		  "roadcode"
+		]
+	  ],
+	  "layout": {
+		"visibility": "visible",
+		"symbol-placement": "point",
+		"text-pitch-alignment": "viewport",
+		"text-rotation-alignment": "viewport",
+		"text-field": "{roadcode}",
+		"text-font": [
+		  "Arial Unicode MS Bold"
+		],
+		"text-size": 11,
+		"text-padding": 1,
+		"icon-image": "ic_map_shengway",
+		"icon-text-fit": "both",
+		"icon-text-fit-padding": [
+		  2,
+		  2,
+		  2,
+		  2
+		],
+		"icon-rotation-alignment": "viewport",
+		"icon-padding": {
+		  "stops": [
+			[
+			  7,
+			  20
+			],
+			[
+			  11,
+			  20
+			],
+			[
+			  12,
+			  60
+			]
+		  ]
+		}
+	  },
+	  "paint": {
+		"text-color": "rgba(255, 255, 255, 1)",
+		"text-halo-color": "rgba(255, 255, 255, 0.8)",
+		"text-halo-width": 0.1
+	  }
+	},
+	{
+	  "id": "高速路-标注-背景",
+	  "tree-path": "高速公路图标-道路-标注",
+	  "type": "symbol",
+	  "source": "osm",
+	  "source-layer": "tra_net_ln",
+	  "minzoom": 7,
+	  "maxzoom": 24,
+	  "filter": [
+		"all",
+		[
+		  "in",
+		  "fcode",
+		  "4200010313",
+		  "4200020313"
+		],
+		[
+		  "has",
+		  "roadcode"
+		]
+	  ],
+	  "layout": {
+		"visibility": "visible",
+		"text-field": "{roadcode}",
+		"symbol-placement": "point",
+		"text-padding": 1,
+		"text-allow-overlap": false,
+		"text-ignore-placement": false,
+		"text-pitch-alignment": "viewport",
+		"text-max-angle": 45,
+		"text-keep-upright": true,
+		"text-rotation-alignment": "viewport",
+		"symbol-spacing": 500,
+		"text-font": [
+		  "Arial Unicode MS Bold"
+		],
+		"text-size": 11,
+		"icon-image": "ic_map_highway",
+		"icon-rotation-alignment": "viewport",
+		"icon-text-fit": "both",
+		"icon-text-fit-padding": [
+		  2,
+		  4,
+		  2,
+		  4
+		],
+		"icon-padding": {
+		  "stops": [
+			[
+			  7,
+			  20
+			],
+			[
+			  11,
+			  20
+			],
+			[
+			  12,
+			  2
+			]
+		  ]
+		}
+	  },
+	  "paint": {
+		"text-color": "rgba(255, 255, 255, 1)",
+		"text-halo-color": "rgba(255, 255, 255, 0.8)",
+		"text-halo-width": 0.1
+	  }
+	},
+	{
+	  "id": "河流-标注",
+	  "tree-path": "河流-水系-标注",
+	  "type": "symbol",
+	  "source": "osm",
+	  "source-layer": "hyd_net_ln",
+	  "minzoom": 7,
+	  "filter": [
+		"all",
+		[
+		  "==",
+		  "fcode",
+		  "2614010999"
+		]
+	  ],
+	  "layout": {
+		"visibility": "visible",
+		"text-field": "{name}",
+		"symbol-placement": "line",
+		"text-pitch-alignment": "viewport",
+		"text-rotation-alignment": "map",
+		"text-justify": "center",
+		"text-anchor": "center",
+		"text-size": 13,
+		"symbol-spacing": {
+		  "stops": [
+			[
+			  9,
+			  20
+			],
+			[
+			  19,
+			  1000
+			]
+		  ]
+		},
+		"icon-rotation-alignment": "viewport"
+	  },
+	  "paint": {
+		"text-color": "rgba(46, 127, 175, 1)",
+		"text-halo-width": 2,
+		"text-halo-color": "rgba(255, 255, 255, 1)"
+	  }
+	},
+	{
+	  "id": "地名点",
+	  "tree-path": "村名-地名点-标注",
+	  "type": "symbol",
+	  "source": "osm",
+	  "source-layer": "res_pt",
+	  "minzoom": 9,
+	  "filter": [
+		"all",
+		[
+		  "!in",
+		  "fcode",
+		  "3111030106",
+		  "3111040106",
+		  "3111050106",
+		  "7512020106"
+		]
+	  ],
+	  "layout": {
+		"text-field": "{name}",
+		"visibility": "visible",
+		"symbol-placement": "point",
+		"text-size": 12,
+		"text-padding": 4,
+		"icon-text-fit": "both",
+		"icon-text-fit-padding": [
+		  3,
+		  3,
+		  3,
+		  3
+		],
+		"text-pitch-alignment": "viewport",
+		"text-rotation-alignment": "viewport",
+		"icon-rotation-alignment": "viewport"
+	  },
+	  "paint": {
+		"text-color": "rgba(115, 115, 22, 1)",
+		"text-halo-color": "rgba(255, 255, 255, 0.8)",
+		"text-halo-width": 1
+	  }
+	},
+	{
+	  "id": "山峰",
+	  "tree-path": "山峰-地名点-标注",
+	  "type": "symbol",
+	  "source": "osm",
+	  "source-layer": "res_pt",
+	  "minzoom": 8,
+	  "filter": [
+		"all",
+		[
+		  "==",
+		  "fcode",
+		  "7512020106"
+		]
+	  ],
+	  "layout": {
+		"text-field": "{name}",
+		"visibility": "visible",
+		"symbol-placement": "point",
+		"text-size": 12,
+		"text-padding": 4,
+		"icon-image": "山尖",
+		"text-anchor": "left",
+		"text-justify": "left",
+		"text-offset": [
+		  0.6,
+		  0
+		],
+		"text-pitch-alignment": "viewport",
+		"text-rotation-alignment": "viewport",
+		"icon-rotation-alignment": "viewport"
+	  },
+	  "paint": {
+		"text-color": "rgba(80, 80, 80, 1)",
+		"text-halo-color": "rgba(255, 255, 255, 1)",
+		"text-halo-width": 1.5
+	  }
+	},
+	{
+	  "id": "兴趣点-符号",
+	  "tree-path": "符号-兴趣点-标注",
+	  "type": "symbol",
+	  "source": "osm",
+	  "source-layer": "poi",
+	  "minzoom": 8,
+	  "filter": [
+		"all",
+		[
+		  "!=",
+		  "stylename",
+		  "地铁口"
+		]
+	  ],
+	  "layout": {
+		"text-max-width": 8,
+		"text-field": "{name}",
+		"icon-image": "{stylename}",
+		"text-justify": "left",
+		"text-pitch-alignment": "viewport",
+		"text-rotation-alignment": "viewport",
+		"icon-rotation-alignment": "viewport",
+		"text-size": 12,
+		"text-anchor": "left",
+		"text-offset": [
+		  0.6,
+		  0
+		],
+		"visibility": "visible",
+		"text-keep-upright": false
+	  },
+	  "paint": {
+		"text-color": "rgba(115, 81, 57, 1)",
+		"text-halo-width": 1,
+		"text-halo-color": "rgba(255, 255, 255, 1)"
+	  }
+	},
+	{
+	  "id": "乡级政府",
+	  "tree-path": "乡级政府-地名点-标注",
+	  "type": "symbol",
+	  "source": "osm",
+	  "source-layer": "res_pt",
+	  "minzoom": 8,
+	  "maxzoom": 22,
+	  "filter": [
+		"all",
+		[
+		  "==",
+		  "fcode",
+		  "3111050106"
+		],
+		[
+		  "!=",
+		  "icon",
+		  "ic_map_streets"
+		]
+	  ],
+	  "layout": {
+		"text-field": "{name}",
+		"visibility": "visible",
+		"symbol-placement": "point",
+		"text-size": 12,
+		"text-padding": 2,
+		"text-pitch-alignment": "viewport",
+		"icon-image": {
+		  "stops": [
+			[
+			  9,
+			  "其他兴趣点"
+			],
+			[
+			  10,
+			  ""
+			]
+		  ]
+		},
+		"text-offset": {
+		  "stops": [
+			[
+			  9,
+			  [
+				0.3,
+				0
+			  ]
+			],
+			[
+			  10,
+			  [
+				0,
+				0
+			  ]
+			]
+		  ]
+		},
+		"text-anchor": "left",
+		"text-rotation-alignment": "viewport"
+	  },
+	  "paint": {
+		"text-color": "rgba(65,65, 65, 0.8)",
+		"text-halo-width": {
+		  "stops": [
+			[
+			  15,
+			  2
+			],
+			[
+			  15,
+			  2
+			]
+		  ]
+		},
+		"text-halo-color": "rgba(255, 255, 255, 1)"
+	  }
+	},
+	{
+	  "id": "街道",
+	  "tree-path": "街道-地名点-标注",
+	  "type": "symbol",
+	  "source": "osm",
+	  "source-layer": "res_pt",
+	  "minzoom": 9,
+	  "maxzoom": 22,
+	  "filter": [
+		"all",
+		[
+		  "==",
+		  "fcode",
+		  "3111050106"
+		],
+		[
+		  "==",
+		  "icon",
+		  "ic_map_streets"
+		]
+	  ],
+	  "layout": {
+		"text-field": "{name}",
+		"icon-image": {
+		  "stops": [
+			[
+			  12,
+			  ""
+			],
+			[
+			  13,
+			  "ic_map_streets"
+			],
+			[
+			  14,
+			  "ic_map_2"
+			]
+		  ]
+		},
+		"text-justify": "left",
+		"text-pitch-alignment": "viewport",
+		"text-rotation-alignment": "viewport",
+		"icon-rotation-alignment": "viewport",
+		"text-size": 12,
+		"text-anchor": {
+		  "stops": [
+			[
+			  13,
+			  "center"
+			],
+			[
+			  14,
+			  "left"
+			]
+		  ]
+		},
+		"text-offset": [
+		  0.3,
+		  0
+		],
+		"visibility": "visible",
+		"text-keep-upright": false,
+		"icon-padding": 2,
+		"icon-offset": [
+		  0,
+		  0
+		],
+		"icon-text-fit": {
+		  "stops": [
+			[
+			  13,
+			  "both"
+			],
+			[
+			  14,
+			  "none"
+			]
+		  ]
+		},
+		"icon-text-fit-padding": [
+		  2,
+		  5,
+		  2,
+		  5
+		]
+	  },
+	  "paint": {
+		"text-color": {
+		  "stops": [
+			[
+			  12,
+			  "rgba(255, 255, 255, 1)"
+			],
+			[
+			  12.9,
+			  "rgba(255, 255, 255, 1)"
+			],
+			[
+			  13,
+			  "rgba(255, 255, 255, 1)"
+			],
+			[
+			  13.9,
+			  "rgba(255, 255, 255, 1)"
+			],
+			[
+			  14,
+			  "rgba(255, 255, 255, 1)"
+			]
+		  ]
+		},
+		"text-halo-width": {
+		  "stops": [
+			[
+			  12,
+			  0.1
+			],
+			[
+			  13,
+			  0.1
+			],
+			[
+			  14,
+			  0.1
+			],
+			[
+			  14,
+			  0.1
+			],
+			[
+			  14,
+			  0.1
+			],
+			[
+			  14.1,
+			  0.1
+			]
+		  ]
+		},
+		"text-halo-color": "rgba(255, 255, 255, 1)"
+	  }
+	},
+	{
+	  "id": "县级政府",
+	  "tree-path": "县级政府-地名点-标注",
+	  "type": "symbol",
+	  "source": "osm",
+	  "source-layer": "res_pt",
+	  "minzoom": 8,
+	  "maxzoom": 22,
+	  "filter": [
+		"all",
+		[
+		  "in",
+		  "fcode",
+		  "3111040106"
+		]
+	  ],
+	  "layout": {
+		"text-field": "{name}",
+		"visibility": "visible",
+		"symbol-placement": "point",
+		"text-size": 12,
+		"icon-image": "ic_map_xjs",
+		"icon-text-fit": "both",
+		"icon-text-fit-padding": [
+		  2,
+		  2,
+		  2,
+		  2
+		],
+		"text-justify": "center",
+		"text-font": [
+		  "黑体"
+		],
+		"text-pitch-alignment": "viewport",
+		"text-rotation-alignment": "viewport",
+		"icon-rotation-alignment": "viewport",
+		"text-anchor": "center",
+		"text-keep-upright": false
+	  },
+	  "paint": {
+		"text-color": {
+		  "stops": [
+		    [
+			  8,
+			  "rgba(255, 255, 255, 1)"
+			],
+			[
+			  9,
+			  "rgba(255, 255, 255, 1)"
+			],
+			[
+			  10,
+			  "rgba(255, 255, 255, 1)"
+			],
+			[
+			  13.9,
+			  "rgba(255, 255, 255, 1)"
+			],
+			[
+			  14,
+			  "rgba(255, 255, 255, 1)"
+			]
+		  ]
+		},
+		"text-halo-width": {
+		  "stops": [
+			[
+			  9,
+			  0.1
+			],
+			[
+			  10,
+			  0.1
+			],
+			[
+			  13,
+			  0.1
+			],
+			[
+			  14,
+			  0.1
+			]
+		  ]
+		},
+		"text-halo-color": "rgba(255, 255, 255, 1)"
+	  }
+	},
+	{
+	  "id": "地级政府",
+	  "tree-path": "地级政府-地名点-标注",
+	  "type": "symbol",
+	  "source": "osm",
+	  "source-layer": "res_pt",
+	  "minzoom": 7,
+	  "maxzoom": 20,
+	  "filter": [
+		"all",
+		[
+		  "in",
+		  "fcode",
+		  "3111030106"
+		]
+	  ],
+	  "layout": {
+		"text-field": {
+		  "stops": [
+			[
+			  11,
+			  "{name}"
+			],
+			[
+			  14,
+			  "{name}人民政府"
+			]
+		  ]
+		},
+		"visibility": "visible",
+		"symbol-placement": "point",
+		"text-size": 16,
+		"text-padding": 4,
+		"icon-image": {
+		  "stops": [
+			[
+			  9,
+			  "市政府"
+			],
+			[
+			  10,
+			  "ic_map_2"
+			]
+		  ]
+		},
+		"text-justify": "left",
+		"text-anchor": "left",
+		"text-offset": [
+		  0.5,
+		  0
+		],
+		"text-font": [
+		  "Arial Unicode MS Blod",
+		  "Open Sans Regular"
+		],
+		"text-pitch-alignment": "viewport",
+		"text-rotation-alignment": "viewport",
+		"icon-rotation-alignment": "viewport"
+	  },
+	  "paint": {
+		"text-color": "rgba(65, 65, 65, 1)",
+		"text-halo-width": 2,
+		"text-halo-color": "rgba(255, 255, 255, 1)"
+	  }
+	},
+	{
+	  "id": "杭州市政府",
+	  "tree-path": "杭州市政府-地名点-标注",
+	  "type": "symbol",
+	  "source": "osm",
+	  "source-layer": "res_pt",
+	  "minzoom": 7,
+	  "maxzoom": 20,
+	  "filter": [
+		"all",
+		[
+		  "==",
+		  "name",
+		  "杭州市"
+		]
+	  ],
+	  "layout": {
+		"text-field": {
+		  "stops": [
+			[
+			  11,
+			  "{name}"
+			],
+			[
+			  14,
+			  "{name}人民政府"
+			]
+		  ]
+		},
+		"visibility": "visible",
+		"symbol-placement": "point",
+		"text-size": 17,
+		"text-padding": 4,
+		"icon-image": {
+		  "stops": [
+			[
+			  9,
+			  "杭州市"
+			],
+			[
+			  10,
+			  "ic_map_2"
+			]
+		  ]
+		},
+		"text-font": [
+		  "Arial Unicode MS Blod",
+		  "Open Sans Regular"
+		],
+		"text-pitch-alignment": "viewport",
+		"text-rotation-alignment": "viewport",
+		"icon-rotation-alignment": "viewport",
+		"text-justify": "left",
+		"text-anchor": "left",
+		"text-offset": [
+		  0.5,
+		  0
+		]
+	  },
+	  "paint": {
+		"text-color": "rgba(65, 65, 65, 1)",
+		"text-halo-width": 2,
+		"text-halo-color": "rgba(255, 255, 255, 1)"
+	  }
+	},
+	{
+	  "id": "省政府",
+	  "tree-path": "省政府-地名点-标注",
+	  "type": "symbol",
+	  "source": "osm",
+	  "source-layer": "res_pt",
+	  "minzoom": 11,
+	  "maxzoom": 22,
+	  "filter": [
+		"all",
+		[
+		  "==",
+		  "fcode",
+		  "3111020106"
+		]
+	  ],
+	  "layout": {
+		"text-field": {
+		  "stops": [
+			[
+			  11,
+			  "{name}"
+			],
+			[
+			  14,
+			  "{name}人民政府"
+			]
+		  ]
+		},
+		"visibility": "visible",
+		"symbol-placement": "point",
+		"text-size": 16,
+		"text-padding": 4,
+		"icon-image": "ic_map_2",
+		"icon-text-fit": "none",
+		"icon-text-fit-padding": [
+		  5,
+		  5,
+		  5,
+		  5
+		],
+		"text-justify": "left",
+		"text-font": [
+		  "Arial Unicode MS Blod",
+		  "Open Sans Regular"
+		],
+		"text-pitch-alignment": "viewport",
+		"text-rotation-alignment": "viewport",
+		"icon-rotation-alignment": "viewport",
+		"text-anchor": "left",
+		"text-offset": [
+		  0.2,
+		  0
+		]
+	  },
+	  "paint": {
+		"text-color": "rgba(50, 50, 50, 1)",
+		"text-halo-width": 2,
+		"text-halo-color": "rgba(255, 255, 255, 1)"
+	  }
+	},
+	{
+	  "id": "海域",
+	  "tree-path": "海域-水系-标注",
+	  "type": "symbol",
+	  "source": "osm",
+	  "source-layer": "hyd_ln",
+	  "maxzoom": 22,
+	  "minzoom": 7,
+	  "filter": [
+		"all",
+		[
+		  "in",
+		  "fcode",
+		  "2501000330",
+		  "2501010330",
+		  "2501020330",
+		  "2501030330"
+		]
+	  ],
+	  "layout": {
+		"visibility": "visible",
+		"text-field": "{name}",
+		"text-size": 14,
+		"text-padding": 30,
+		"text-rotation-alignment": "viewport",
+		"text-pitch-alignment": "viewport"
+	  },
+	  "paint": {
+		"text-color": "rgba(14, 122, 173, 1)",
+		"text-halo-color": "rgba(255, 255, 255, 1)",
+		"text-halo-width": 2
+	  }
+	},
+	{
+	  "id": "水库",
+	  "tree-path": "水库-水系-标注",
+	  "type": "symbol",
+	  "source": "osm",
+	  "source-layer": "hyd_ln",
+	  "maxzoom": 22,
+	  "minzoom": 10,
+	  "filter": [
+		"all",
+		[
+		  "!in",
+		  "fcode",
+		  "2501000330",
+		  "2501010330",
+		  "2501020330",
+		  "2501030330"
+		]
+	  ],
+	  "layout": {
+		"symbol-placement": "line",
+		"visibility": "visible",
+		"text-field": "{name}",
+		"text-size": 12,
+		"text-padding": 20,
+		"text-rotation-alignment": "viewport",
+		"text-pitch-alignment": "viewport"
+	  },
+	  "paint": {
+		"text-color": "rgba(64, 160, 216, 1)",
+		"text-halo-color": "rgba(255, 255, 255, 1)",
+		"text-halo-width": 2
+	  }
+	},
+	{
+	  "id": "dao-label",
+	  "tree-path": "岛-标注-水系",
+	  "type": "symbol",
+	  "source": "osm",
+	  "source-layer": "hyd_py",
+	  "minzoom": 7,
+	  "maxzoom": 17,
+	  "filter": [
+		"all",
+		[
+		  "in",
+		  "fcode",
+		  "2602000500",
+		  "2507000500"
+		]
+	  ],
+	  "layout": {
+		"visibility": "visible",
+		"text-field": "{name}",
+		"text-size": 12,
+		"text-padding": 20,
+		"text-rotation-alignment": "viewport",
+		"text-pitch-alignment": "viewport",
+		"symbol-avoid-edges": true,
+		"symbol-spacing": 500
+	  },
+	  "paint": {
+		"text-color": "rgba(50, 50, 50, 1)",
+		"text-halo-color": "rgba(255, 255, 255, 1)",
+		"text-halo-width": 2
+	  }
+	},
+	{
+	  "id": "桥梁隧道-标注",
+	  "tree-path": "桥梁隧道-道路-标注",
+	  "type": "symbol",
+	  "source": "osm",
+	  "source-layer": "tra_ln",
+	  "minzoom": 14,
+	  "filter": [
+		"any",
+		[
+		  "in",
+		  "fcode",
+		  "4503010313",
+		  "4503010315",
+		  "4506010313",
+		  "4506020313"
+		]
+	  ],
+	  "layout": {
+		"visibility": "visible",
+		"symbol-placement": "line",
+		"text-pitch-alignment": "viewport",
+		"text-rotation-alignment": "map",
+		"text-field": "{name}",
+		"text-font": [
+		  "Arial Unicode MS Bold"
+		],
+		"text-size": {
+		  "stops": [
+			[
+			  12,
+			  11
+			],
+			[
+			  13,
+			  12
+			]
+		  ]
+		},
+		"text-padding": 1,
+		"symbol-spacing": 800,
+		"icon-rotation-alignment": "viewport"
+	  },
+	  "paint": {
+		"text-color": "rgba(104, 54, 13, 1)",
+		"text-halo-color": "rgba(255, 255, 255, 1)",
+		"text-halo-width": {
+		  "stops": [
+			[
+			  12,
+			  1
+			],
+			[
+			  13,
+			  2
+			]
+		  ]
+		}
+	  }
+	},
+	{
+	  "id": "地铁出入口-符号",
+	  "tree-path": "符号-地铁出入口-标注",
+	  "type": "symbol",
+	  "source": "osm",
+	  "source-layer": "poi",
+	  "minzoom": 17,
+	  "filter": [
+		"all",
+		[
+		  "in",
+		  "stylename",
+		  "地铁口"
+		]
+	  ],
+	  "layout": {
+		"text-max-width": 8,
+		"text-field": "{name}",
+		"icon-image": "{stylename}",
+		"text-justify": "center",
+		"text-pitch-alignment": "viewport",
+		"text-rotation-alignment": "viewport",
+		"icon-rotation-alignment": "viewport",
+		"text-size": 12,
+		"text-anchor": "center",
+		"text-offset": [
+		  0.0,
+		  0
+		],
+		"visibility": "none",
+		"text-keep-upright": false
+	  },
+	  "paint": {
+		"text-color": "rgba(254, 254, 254, 1)"
+	  }
+	}
+  ],
+  "id": "x04sv9tch"
+}
